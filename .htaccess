@@ -1,0 +1,19 @@
+
+# Autoriser toutes les origines (à utiliser avec précaution)
+Header set Access-Control-Allow-Origin "*"
+
+# Autoriser les méthodes HTTP
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+
+# Autoriser les en-têtes spécifiques
+Header set Access-Control-Allow-Headers "Content-Type, Authorization, X-Requested-With"
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
+RewriteEngine On
+
+# Ne pas appliquer la règle si la requête concerne un fichier ou un dossier existant
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Rediriger toutes les autres requêtes vers index.php
+RewriteRule ^(.*)$ index.php?request=$1 [QSA,L]
