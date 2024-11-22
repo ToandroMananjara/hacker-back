@@ -15,7 +15,8 @@ class profileController
             try {
                 $db = new Database();
                 $conn = $db->getConnexion();
-                $reactComment = new ReactionComments($conn);
+                $user =
+                    $reactComment = new ReactionComments($conn);
 
                 $input = json_decode(file_get_contents('php://input'), true);
                 $comment_id = $input['comment_id'];
