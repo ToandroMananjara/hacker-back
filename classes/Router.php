@@ -32,6 +32,8 @@ class Router
         'about/create' => ['controller' => 'aboutController', 'action' => 'createAbout'],
         'about/update' => ['controller' => 'aboutController', 'action' => 'updateAbout'],
 
+        'profile' => ['controller' => 'profileController', 'action' => 'index'],
+
 
 
     ];

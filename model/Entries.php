@@ -96,6 +96,24 @@ class Entries
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    // Méthode pour lire une entrée spécifique par son ID
+    public function readAllByUser()
+    {
+        // Requête pour récupérer une entrée spécifique par son ID
+        $query = "SELECT * FROM " . $this->table . " WHERE user_id = :user_id";
+
+        // Préparer la requête
+        $stmt = $this->connexion->prepare($query);
+
+        // Lier le paramètre :entry_id
+        $stmt->bindParam(':user_id', $this->user_id);
+
+        // Exécuter la requête
+        $stmt->execute();
+
+        // Retourner une seule entrée sous forme de tableau associatif
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     // Méthode pour mettre à jour une entrée
     public function update()
     {

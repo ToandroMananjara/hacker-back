@@ -11,27 +11,45 @@ class profileController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            $user_id = $_GET['user_id'];
 
             try {
                 $db = new Database();
                 $conn = $db->getConnexion();
-                $user =
-                    $reactComment = new ReactionComments($conn);
+                /**
+                 * user
+                 * about : id, description
+                 * allPosts for the current user
+                 * profile picture
+                 * cover picture
+                 * contac ??
+                 * 
+                 */
+                $user = new Users($conn);
+                $reactComment = new ReactionComments($conn);
+                $about = new About($conn);
+                $entries = new Entries($conn);
+                $coverPhoto = new CoverPhoto($conn);
+                $profilePhoto = new ProfilePhoto($conn);
 
-                $input = json_decode(file_get_contents('php://input'), true);
-                $comment_id = $input['comment_id'];
-                $user_id = $input['user_id'];
+                // $follow = new Follow($conn);
+                $user->id = $user_id;
+                $userCurrent = $user->readOne();
 
-                $reactComment->user_id = $user_id;
-                $reactComment->comment_id = $comment_id;
+                $about->user_id = $user_id;
+                $aboutUserCurrent = $about->readOne();
 
-                $isReact = $reactComment->toggleLike();
+                $entries->user_id = $user_id;
+                $allPosts  = $entries->readAllByUser();
 
-                if ($isReact) {
-                    $allReacts = $reactComment->readAll();
+                // $about->id;
+                if ($userCurrent) {
                     echo json_encode([
                         'status' => 'success',
-                        'data' => $allReacts
+                        'user' => $userCurrent,
+                        'about' => $aboutUserCurrent,
+                        'posts' => $allPosts ? $allPosts : [],
+
                     ], JSON_UNESCAPED_UNICODE);
                     http_response_code(200);
                 }

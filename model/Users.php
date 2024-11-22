@@ -52,7 +52,7 @@ class Users
     public function read()
     {
         // Requête pour récupérer tous les utilisateurs
-        $query = "SELECT id, username, email, created_at FROM " . $this->table;
+        $query = "SELECT id, username, email, created_at, role FROM " . $this->table;
 
         // Préparer la requête
         $stmt = $this->connexion->prepare($query);
@@ -68,7 +68,7 @@ class Users
     public function readOne()
     {
         // Requête pour récupérer un utilisateur spécifique par son ID
-        $query = "SELECT id, username, email, created_at FROM " . $this->table . " WHERE id = :id";
+        $query = "SELECT id, username, email, created_at, role FROM " . $this->table . " WHERE id = :id";
 
         // Préparer la requête
         $stmt = $this->connexion->prepare($query);
