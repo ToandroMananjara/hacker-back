@@ -15,3 +15,9 @@
 - methode : POST
 
 * outPut : ['status' => 'success', 'message' => 'Photo de profil téléchargée avec succès.', 'photo_path' => $destination]
+
+- EndPoint : createCoverPhoto
+- body : 'coverPhoto' type files
+- methode : POST
+
+* outPut : ['status' => 'success', 'message' => 'Photo de couverture téléchargée avec succès.', 'photo_path' => $destination]
