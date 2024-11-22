@@ -34,9 +34,7 @@ class Router
 
 
         'profile' => ['controller' => 'profileController', 'action' => 'index'],
-
-
-
+        'createProfilePhoto' => ['controller' => 'profilePhotoController', 'action' => 'createPhotoProfile'],
 
         'notifications' => ['controller' => 'notification', 'action' => 'index'],
         'notifications/read' => ['controller' => 'notificationController', 'action' => 'getNotifications'],
