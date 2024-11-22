@@ -22,8 +22,10 @@ class Post
                 $emotion = new Emotions($conn);
                 $reactionEntries = new ReactionEntries($conn);
 
+                $comments = new Comments($conn);
+
                 foreach ($allPosts as $key => $post) {
-                    $user->id = $post['id'];
+                    $user->id = $post['user_id'];
                     $userPost = $user->readOne();
 
                     $emotion->emotion_id = $post['emotion_id'];
@@ -34,7 +36,7 @@ class Post
                     $reactPost = $reactionEntries->read();
 
                     $datas[] = [
-                        "userPost" => $userPost,
+                        "username" => $userPost['username'],
                         "entry_id" => $post['entry_id'],
                         "well_being_score" => $post["well_being_score"],
                         "notes" => $post["notes"],
@@ -45,7 +47,8 @@ class Post
                         "reaction" => [
                             "likeCount" => $likeCount,
                             "reacts" => $reactPost
-                        ]
+                        ],
+                        "comment" => []
                     ];
                 }
 
@@ -95,9 +98,10 @@ class Post
                 $isCreate = $entries->create();
 
                 if ($isCreate) {
+                    $allPosts = $entries->read();
                     echo json_encode([
                         'status' => 'success',
-                        //'data' => $allPosts,
+                        'data' => $allPosts,
                     ], JSON_UNESCAPED_UNICODE);
                     http_response_code(200);
                 }

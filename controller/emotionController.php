@@ -2,7 +2,7 @@
 require_once 'vendor/autoload.php';
 
 
-class Deconnexion
+class EmotionController
 {
     public function __construct() {}
 

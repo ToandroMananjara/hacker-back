@@ -36,10 +36,6 @@ class SignIn
             $password = $input['password'] ?? null;
 
             $isUser = $user->isAuthentify($email, $password);
-            echo json_encode([
-                'status' => 'success',
-                'data' => $isUser,
-            ]);
             if ($isUser) {
                 // Clé secrète pour signer le JWT
 

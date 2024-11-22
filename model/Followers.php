@@ -1,6 +1,6 @@
 <?php
 require_once 'Notifications.php';
-class Follower
+class Followers
 {
     private $table = 'followers';
     private $connexion = null;
@@ -31,7 +31,7 @@ class Follower
         // Retourner true si l'utilisateur suit déjà, false sinon
         return $stmt->rowCount() > 0;
     }
-    public function follow($follower_id, $followed_id)
+    public function follow()
     {
         //apetraka controller // // Vérifier et décoder les données JSON reçues
         // $data = json_decode(file_get_contents("php://input"), true);
@@ -40,9 +40,6 @@ class Follower
         //     echo json_encode(['status' => 'error', 'message' => 'Données de suivi invalides']);
         //     exit();
         // }
-
-        $this->follower_id = $follower_id;
-        $this->followed_id = $followed_id;
 
         // Préparer et exécuter la requête SQL
         $query = "INSERT INTO " . $this->table . " (follower_id, followed_id) 

@@ -39,8 +39,8 @@ class Router
 
 
         'notifications' => ['controller' => 'notification', 'action' => 'index'],
-        'notifications/read' => ['controller' => 'notification', 'action' => 'getNotifications'],
-        'notifications/count' => ['controller' => 'notification', 'action' => 'countUnread'],
+        'notifications/read' => ['controller' => 'notificationController', 'action' => 'getNotifications'],
+        'notifications/count' => ['controller' => 'notificationController', 'action' => 'countUnread'],
 
         'user/follow' => ['controller' => 'followerController', 'action' => 'follow'],
         'user/unfollow' => ['controller' => 'followerController', 'action' => 'unfollow'],
