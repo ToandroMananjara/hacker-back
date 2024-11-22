@@ -32,20 +32,20 @@ class Router
         'about/create' => ['controller' => 'aboutController', 'action' => 'createAbout'],
         'about/update' => ['controller' => 'aboutController', 'action' => 'updateAbout'],
 
-<<<<<<< HEAD
+
         'profile' => ['controller' => 'profileController', 'action' => 'index'],
 
 
 
-=======
+
         'notifications' => ['controller' => 'notification', 'action' => 'index'],
         'notifications/read' => ['controller' => 'notification', 'action' => 'getNotifications'],
         'notifications/count' => ['controller' => 'notification', 'action' => 'countUnread'],
-        
+
         'user/follow' => ['controller' => 'followerController', 'action' => 'follow'],
         'user/unfollow' => ['controller' => 'followerController', 'action' => 'unfollow'],
         'user/allfriend' => ['controller' => 'followerController', 'action' => 'allFriend'],
->>>>>>> NewBranch2
+
     ];
     public function __construct($request)
     {
