@@ -48,7 +48,7 @@ class User
 
                 $users->username = $username;
                 $users->email = $email;
-                $users->password_hash = $password;
+                $users->password = $password;
 
                 if (isset($username) && isset($email) && isset($password)) {
                     $isEmailExist = $users->checkIfEmailExists();
@@ -103,7 +103,7 @@ class User
                     return;
                 }
 
-                $users->user_id = $userId;
+                $users->id = $userId;
 
                 // Vérifier si l'utilisateur existe avant de supprimer
                 if (!$users->readOne()) {
@@ -169,7 +169,7 @@ class User
                     return;
                 }
 
-                $users->user_id = $userId;
+                $users->id = $userId;
 
                 // Vérifier si l'utilisateur existe
                 if (!$users->readOne()) {
@@ -189,7 +189,7 @@ class User
                     $users->email = $email;
                 }
                 if ($password) {
-                    $users->password_hash = password_hash($password, PASSWORD_BCRYPT); // Assurez-vous de hacher le mot de passe
+                    $users->password = $password;
                 }
 
                 $isUpdated = $users->update();

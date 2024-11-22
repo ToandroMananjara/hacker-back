@@ -4,12 +4,12 @@ class Users
     private $table = "users";
     private $connexion = null;
 
-    public $user_id;
+    public $id;
     public $username;
     public $email;
-    public $password;
-    public $password_hash;    // Le mot de passe haché
+    public $password;   // Le mot de passe haché
     public $created_at;
+    public $role;
 
     public function __construct($conn)
     {
@@ -25,8 +25,8 @@ class Users
         // $hashed_password = password_hash($this->password_hash, PASSWORD_DEFAULT);
 
         // Requête SQL pour insérer un utilisateur
-        $query = "INSERT INTO " . $this->table . " (username, email, password_hash) 
-                  VALUES (:username, :email, :password_hash)";
+        $query = "INSERT INTO " . $this->table . " (username, email, password, role) 
+                  VALUES (:username, :email, :password, :role)";
 
         // Préparer la requête
         $stmt = $this->connexion->prepare($query);
@@ -34,13 +34,14 @@ class Users
         // Lier les paramètres
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':password_hash', $this->password_hash);
+        $stmt->bindParam(':password', $this->password);
+        $stmt->bindParam(':role', $this->role);
 
         // Exécuter la requête et vérifier si l'insertion a réussi
         if ($stmt->execute()) {
             // Récupérer l'ID du dernier utilisateur inséré
-            $this->user_id = $this->connexion->lastInsertId();
-            return true;
+            $this->id = $this->connexion->lastInsertId();
+            return $this->id;
         } else {
 
             return false;
@@ -51,7 +52,7 @@ class Users
     public function read()
     {
         // Requête pour récupérer tous les utilisateurs
-        $query = "SELECT user_id, username, email, created_at FROM " . $this->table;
+        $query = "SELECT id, username, email, created_at FROM " . $this->table;
 
         // Préparer la requête
         $stmt = $this->connexion->prepare($query);
@@ -67,13 +68,13 @@ class Users
     public function readOne()
     {
         // Requête pour récupérer un utilisateur spécifique par son ID
-        $query = "SELECT user_id, username, email, created_at FROM " . $this->table . " WHERE user_id = :user_id";
+        $query = "SELECT id, username, email, created_at FROM " . $this->table . " WHERE id = :id";
 
         // Préparer la requête
         $stmt = $this->connexion->prepare($query);
 
         // Lier le paramètre :user_id
-        $stmt->bindParam(':user_id', $this->user_id);
+        $stmt->bindParam(':id', $this->id);
 
         // Exécuter la requête
         $stmt->execute();
@@ -88,7 +89,7 @@ class Users
         // Requête pour mettre à jour l'utilisateur
         $query = "UPDATE " . $this->table . " 
                   SET username = :username, email = :email 
-                  WHERE user_id = :user_id";
+                  WHERE id = :id";
 
         // Préparer la requête
         $stmt = $this->connexion->prepare($query);
@@ -96,7 +97,7 @@ class Users
         // Lier les paramètres
         $stmt->bindParam(':username', $this->username);
         $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':user_id', $this->user_id);
+        $stmt->bindParam(':id', $this->id);
 
         // Exécuter la requête et vérifier si la mise à jour a réussi
         if ($stmt->execute()) {
@@ -109,13 +110,13 @@ class Users
     public function delete()
     {
         // Requête pour supprimer un utilisateur
-        $query = "DELETE FROM " . $this->table . " WHERE user_id = :user_id";
+        $query = "DELETE FROM " . $this->table . " WHERE id = :id";
 
         // Préparer la requête
         $stmt = $this->connexion->prepare($query);
 
         // Lier le paramètre :user_id
-        $stmt->bindParam(':user_id', $this->user_id);
+        $stmt->bindParam(':id', $this->id);
 
         // Exécuter la requête et vérifier si la suppression a réussi
         if ($stmt->execute()) {
@@ -127,7 +128,7 @@ class Users
     // Méthode pour vérifier si un utilisateur existe déjà par email
     public function checkIfEmailExists()
     {
-        $query = "SELECT user_id FROM " . $this->table . " WHERE email = :email";
+        $query = "SELECT id FROM " . $this->table . " WHERE email = :email";
 
         // Préparer la requête
         $stmt = $this->connexion->prepare($query);
@@ -146,6 +147,23 @@ class Users
     public function verifyPassword($password)
     {
         // Vérifier si le mot de passe fourni correspond au mot de passe haché dans la base de données
-        return password_verify($password, $this->password_hash);
+
+    }
+
+    public function isAuthentify($email, $password)
+    {
+        // Préparer la requête
+        $sql = "SELECT * FROM $this->table where email = '$email' and password = '$password'";
+        $query = $this->connexion->query($sql);
+        $result = $query->fetch(PDO::FETCH_OBJ);
+        if ($result) {
+            $this->id = $result->id;
+            $this->email = $result->email;
+            $this->username = $result->username;
+            // $this-> = $result->prenom;
+
+            return true;
+        } else
+            return false;
     }
 }

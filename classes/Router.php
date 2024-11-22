@@ -13,8 +13,20 @@ class Router
         'posts/delete' => ['controller' => 'post', 'action' => 'deletePost'],
         'posts/update' => ['controller' => 'user', 'action' => 'updatePost'],
 
+        'signIn' => ['controller' => 'signIn', 'action' => 'authenticate'],
+        'signUp' => ['controller' => 'signUp', 'action' => 'index'],
+        'logout' => ['controller' => 'deconnexion', 'action' => 'logout'],
+
+
         'react' => ['controller' => 'reactPost', 'action' => 'reactPost'],
-        'comment' => ['controller' => 'reactPost', 'action' => 'reactPost']
+        'comment' => ['controller' => 'reactPost', 'action' => 'reactPost'],
+
+        'about/' => ['controller' => 'aboutController', 'action' => 'index'],
+
+        'about/create' => ['controller' => 'aboutController', 'action' => 'createAbout'],
+        'about/update' => ['controller' => 'aboutController', 'action' => 'updateAbout'],
+
+
 
     ];
     public function __construct($request)
