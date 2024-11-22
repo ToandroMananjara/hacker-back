@@ -26,7 +26,9 @@ class Router
         'about/create' => ['controller' => 'aboutController', 'action' => 'createAbout'],
         'about/update' => ['controller' => 'aboutController', 'action' => 'updateAbout'],
 
-
+        'notifications' => ['controller' => 'notification', 'action' => 'index'],
+        'notifications/read' => ['controller' => 'notification', 'action' => 'markAsRead'],
+        'notifications/count' => ['controller' => 'notification', 'action' => 'countUnread'],
 
     ];
     public function __construct($request)
