@@ -27,7 +27,7 @@ class Router
         'about/update' => ['controller' => 'aboutController', 'action' => 'updateAbout'],
 
         'notifications' => ['controller' => 'notification', 'action' => 'index'],
-        'notifications/read' => ['controller' => 'notification', 'action' => 'markAsRead'],
+        'notifications/read' => ['controller' => 'notification', 'action' => 'getNotifications'],
         'notifications/count' => ['controller' => 'notification', 'action' => 'countUnread'],
 
     ];
