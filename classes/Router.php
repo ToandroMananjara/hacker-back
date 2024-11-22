@@ -21,7 +21,7 @@ class Router
         'react' => ['controller' => 'reactPost', 'action' => 'reactPost'],
         'comment' => ['controller' => 'reactPost', 'action' => 'reactPost'],
 
-        'about/' => ['controller' => 'aboutController', 'action' => 'index'],
+        'about' => ['controller' => 'aboutController', 'action' => 'index'],
 
         'about/create' => ['controller' => 'aboutController', 'action' => 'createAbout'],
         'about/update' => ['controller' => 'aboutController', 'action' => 'updateAbout'],
@@ -29,7 +29,10 @@ class Router
         'notifications' => ['controller' => 'notification', 'action' => 'index'],
         'notifications/read' => ['controller' => 'notification', 'action' => 'getNotifications'],
         'notifications/count' => ['controller' => 'notification', 'action' => 'countUnread'],
-
+        
+        'user/follow' => ['controller' => 'followerController', 'action' => 'follow'],
+        'user/unfollow' => ['controller' => 'followerController', 'action' => 'unfollow'],
+        'user/allfriend' => ['controller' => 'followerController', 'action' => 'allFriend'],
     ];
     public function __construct($request)
     {

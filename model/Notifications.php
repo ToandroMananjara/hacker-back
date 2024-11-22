@@ -18,7 +18,28 @@ class Notifications
             $this->connexion = $conn;
         }
     }
-    /// nasoriko ny create 
+    
+    // Méthode pour créer une notification
+    public function create()
+    {
+        $query = "INSERT INTO " . $this->table . " 
+                  (actor_id, user_id, type, is_read) 
+                  VALUES (:actor_id, :user_id, :type, :is_read)";
+
+        $stmt = $this->connexion->prepare($query);
+
+        $stmt->bindParam(':actor_id', $this->actor_id);
+        $stmt->bindParam(':user_id', $this->user_id);
+        $stmt->bindParam(':type', $this->type);
+        $stmt->bindParam(':is_read', $this->is_read, PDO::PARAM_BOOL);
+
+        if ($stmt->execute()) {
+            $this->id = $this->connexion->lastInsertId();
+            return true;
+        }
+
+        return false;
+    }
     // Méthode pour lire toutes es notifications
     public function read()
     {
