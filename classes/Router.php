@@ -19,7 +19,7 @@ class Router
 
 
         'react' => ['controller' => 'reactPost', 'action' => 'reactPost'],
-        'comment' => ['controller' => 'reactPost', 'action' => 'reactPost'],
+        'comment/create' => ['controller' => 'commentController', 'action' => 'addComment'],
 
         'about/' => ['controller' => 'aboutController', 'action' => 'index'],
 

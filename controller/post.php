@@ -23,7 +23,7 @@ class Post
                 $reactionEntries = new ReactionEntries($conn);
 
                 foreach ($allPosts as $key => $post) {
-                    $user->user_id = $post['user_id'];
+                    $user->id = $post['id'];
                     $userPost = $user->readOne();
 
                     $emotion->emotion_id = $post['emotion_id'];
