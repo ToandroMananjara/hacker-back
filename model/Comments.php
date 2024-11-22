@@ -1,14 +1,14 @@
 <?php
 class Comments
 {
-    private $table = "comment"; // Nom de la table
+    private $table = "comments"; // Nom de la table
     private $connexion = null; // Connexion à la base de données
 
     public $id; // ID du commentaire
     public $post_id; // ID du post associé
     public $user_id; // ID de l'utilisateur ayant créé le commentaire
     public $content; // Contenu du commentaire
-    public $create_at; // Date de création
+    public $created_at; // Date de création
 
     public function __construct($conn)
     {
@@ -20,7 +20,7 @@ class Comments
     // Créer un nouveau commentaire
     public function create()
     {
-        $query = "INSERT INTO " . $this->table . " (post_id, user_id, content, create_at) VALUES (:post_id, :user_id, :content, NOW())";
+        $query = "INSERT INTO " . $this->table . " (post_id, user_id, content) VALUES (:post_id, :user_id, :content)";
         $stmt = $this->connexion->prepare($query);
 
         $stmt->bindParam(':post_id', $this->post_id);
@@ -36,11 +36,12 @@ class Comments
     // Lire tous les commentaires
     public function read()
     {
-        $query = "SELECT * FROM " . $this->table . " ORDER BY create_at DESC";
+        $query = "SELECT * FROM " . $this->table . " ORDER BY created_at DESC";
         $stmt = $this->connexion->prepare($query);
         $stmt->execute();
 
-        return $stmt;
+        $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $comments;
     }
 
     // Lire un seul commentaire par son ID
@@ -100,5 +101,33 @@ class Comments
         $stmt = $this->connexion->prepare($query);
         $stmt->bindParam(':postId', $this->post_id, PDO::PARAM_INT);
         $stmt->execute();
+    }
+
+    public function countCommentsForPost()
+    {
+        $query = "SELECT COUNT(*) FROM comments WHERE post_id = :postId";
+        $stmt = $this->connexion->prepare($query);
+        $stmt->bindParam(':postId', $this->post_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return (int) $stmt->fetchColumn();
+    }
+
+    // Méthode pour vérifier si un utilisateur existe déjà par email
+    public function checkIsCommentExists()
+    {
+        $query = "SELECT id FROM " . $this->table . " WHERE id = :id";
+
+        // Préparer la requête
+        $stmt = $this->connexion->prepare($query);
+
+        // Lier le paramètre :email
+        $stmt->bindParam(':id', $this->id);
+
+        // Exécuter la requête
+        $stmt->execute();
+
+        // Si un utilisateur existe déjà avec cet email, retourner true
+        return $stmt->rowCount() > 0;
     }
 }

@@ -1,13 +1,9 @@
 <?php
 class CommentController
 {
-    private $conn = null;
 
-    public function __construct()
-    {
-        $db = new Database();
-        $this->conn = $db->getConnexion();
-    }
+
+    public function __construct() {}
 
     public function addComment()
     {
@@ -17,15 +13,17 @@ class CommentController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $db = new Database();
+            $conn = $db->getConnexion();
 
-            $user = new Users($this->conn);
+            $comment = new Comments($conn);
 
-            $data = json_decode(file_get_contents("php://input"));
-            $postId = (int) $data['post_id'];
+            $data = json_decode(file_get_contents("php://input"), true);
+            $postId = $data['post_id'];
             $content = trim($data['content']); // Pas besoin de real_escape_string avec PDO
             $userId = 1;
 
-            $comment = new Comments($this->conn);
+
             $comment->post_id = $postId;
             $comment->content = $content;
             $comment->user_id = $userId;
@@ -37,23 +35,59 @@ class CommentController
             }
 
             $commentId = $comment->create();
+            $data = [];
 
             if ($commentId) {
-                $comment->updateCommentCount();
+                $commentCount = $comment->countCommentsForPost();
                 // $this->notification->create($userId, $postOwnerId, 'comment');
+                $allComments = $comment->read();
+
                 echo json_encode([
                     'status' => 'success',
-                    'data' => '',
-                ]);
+                    'data' => $allComments,
+                    'commentCount' => $commentCount
+                ], JSON_UNESCAPED_UNICODE);
             }
+        }
+    }
 
-            echo json_encode([
-                'status' => 'success',
-                'data' => '',
-            ]);
+    public function deleteComment()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            http_response_code(200);
+            exit;
         }
 
+        if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+            $db = new Database();
+            $conn = $db->getConnexion();
 
-        throw new Exception("Erreur lors de l'ajout du commentaire");
+            $comment = new Comments($conn);
+
+            $data = json_decode(file_get_contents("php://input"), true);
+            $commentId = $data['comment_id'];
+
+            $comment->id =  $commentId;
+
+            $isCommentExist = $comment->checkIsCommentExists();
+
+            $isDelete = $comment->delete();
+
+            if (!$isCommentExist) {
+                http_response_code(300);
+                echo json_encode([
+                    'message' => 'Commnentaire n\'existe pas',
+                ], JSON_UNESCAPED_UNICODE);
+            } else {
+                $isDelete = $comment->delete();
+                // $this->notification->create($userId, $postOwnerId, 'comment');
+                $allComments = $comment->read();
+                http_response_code(200);
+                echo json_encode([
+                    'message' => 'Commentaire et ses réactions supprimés avec succès',
+                    'data' => $allComments
+                ], JSON_UNESCAPED_UNICODE);
+            }
+        }
     }
 }

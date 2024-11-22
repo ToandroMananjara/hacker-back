@@ -19,7 +19,11 @@ class Router
 
 
         'react' => ['controller' => 'reactPost', 'action' => 'reactPost'],
+
         'comment/create' => ['controller' => 'commentController', 'action' => 'addComment'],
+        'comment/delete' => ['controller' => 'commentController', 'action' => 'deleteComment'],
+        'comment/react' => ['controller' => 'reactCommentController', 'action' => 'reactComment'],
+
 
         'about/' => ['controller' => 'aboutController', 'action' => 'index'],
 
