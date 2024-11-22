@@ -5,7 +5,7 @@ class Comments
     private $connexion = null; // Connexion à la base de données
 
     public $id; // ID du commentaire
-    public $post_id; // ID du post associé
+    public $entry_id; // ID du post associé
     public $user_id; // ID de l'utilisateur ayant créé le commentaire
     public $content; // Contenu du commentaire
     public $created_at; // Date de création
@@ -20,10 +20,10 @@ class Comments
     // Créer un nouveau commentaire
     public function create()
     {
-        $query = "INSERT INTO " . $this->table . " (post_id, user_id, content) VALUES (:post_id, :user_id, :content)";
+        $query = "INSERT INTO " . $this->table . " (entry_id, user_id, content) VALUES (:entry_id, :user_id, :content)";
         $stmt = $this->connexion->prepare($query);
 
-        $stmt->bindParam(':post_id', $this->post_id);
+        $stmt->bindParam(':entry_id', $this->entry_id);
         $stmt->bindParam(':user_id', $this->user_id);
         $stmt->bindParam(':content', $this->content);
 
@@ -89,7 +89,7 @@ class Comments
     {
         $query = "SELECT user_id FROM posts WHERE id = :postId";
         $stmt = $this->connexion->prepare($query);
-        $stmt->bindParam(':postId', $this->post_id, PDO::PARAM_INT);
+        $stmt->bindParam(':postId', $this->entry_id, PDO::PARAM_INT);
         $stmt->execute();
 
         return $stmt->fetchColumn();
@@ -97,17 +97,17 @@ class Comments
 
     public function updateCommentCount()
     {
-        $query = "UPDATE posts SET comment_count = (SELECT COUNT(*) FROM comments WHERE post_id = :postId) WHERE id = :postId";
+        $query = "UPDATE posts SET comment_count = (SELECT COUNT(*) FROM comments WHERE entry_id = :postId) WHERE id = :postId";
         $stmt = $this->connexion->prepare($query);
-        $stmt->bindParam(':postId', $this->post_id, PDO::PARAM_INT);
+        $stmt->bindParam(':postId', $this->entry_id, PDO::PARAM_INT);
         $stmt->execute();
     }
 
     public function countCommentsForPost()
     {
-        $query = "SELECT COUNT(*) FROM comments WHERE post_id = :postId";
+        $query = "SELECT COUNT(*) FROM comments WHERE entry_id = :postId";
         $stmt = $this->connexion->prepare($query);
-        $stmt->bindParam(':postId', $this->post_id, PDO::PARAM_INT);
+        $stmt->bindParam(':postId', $this->entry_id, PDO::PARAM_INT);
         $stmt->execute();
 
         return (int) $stmt->fetchColumn();

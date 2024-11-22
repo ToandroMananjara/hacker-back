@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 22 nov. 2024 à 06:59
+-- Généré le : ven. 22 nov. 2024 à 20:25
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -65,58 +65,11 @@ CREATE TABLE `auth_tokens` (
 
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
-  `post_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
+  `entry_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
   `content` text NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `comments`
---
-
-INSERT INTO `comments` (`id`, `post_id`, `user_id`, `content`, `created_at`) VALUES
-(91, 91, 1, 'My first love and my only one!!', '2024-11-02 14:10:58'),
-(94, 140, 2, 'Just right!! :D', '2024-11-07 05:40:38'),
-(95, 137, 2, 'Woke up like this! *^^*', '2024-11-07 05:41:42'),
-(96, 141, 2, 'Love you sweetie!!', '2024-11-07 05:42:25'),
-(98, 97, 2, 'My girls', '2024-11-08 12:40:23'),
-(99, 107, 2, 'Cool!!!', '2024-11-09 11:40:06'),
-(100, 107, 1, 'You\\\'re amazing girl!!', '2024-11-09 11:41:34'),
-(101, 126, 2, 'Wanna visit it!!', '2024-11-09 12:23:26'),
-(102, 95, 2, 'Sunny day!!', '2024-11-09 12:25:35'),
-(103, 145, 4, 'Hi! cupcake!', '2024-11-10 12:00:37'),
-(104, 126, 1, 'I like it!!', '2024-11-10 12:04:57'),
-(105, 141, 3, 'Good vibe!!', '2024-11-10 17:54:59'),
-(106, 146, 2, 'I like your style! Crazy!!', '2024-11-13 18:51:02'),
-(107, 145, 3, 'Lila!! My color!', '2024-11-13 19:14:24'),
-(108, 107, 2, 'Cool!', '2024-11-20 08:31:09');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `comment_reactions`
---
-
-CREATE TABLE `comment_reactions` (
-  `id` int(11) NOT NULL,
-  `comment_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `reaction_type` enum('like','dislike') NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `comment_reactions`
---
-
-INSERT INTO `comment_reactions` (`id`, `comment_id`, `user_id`, `reaction_type`, `created_at`) VALUES
-(6, 91, 1, 'like', '2024-11-02 14:11:06'),
-(7, 91, 2, 'like', '2024-11-07 05:28:26'),
-(8, 96, 3, 'like', '2024-11-09 15:35:35'),
-(9, 103, 3, 'like', '2024-11-10 17:55:43'),
-(10, 105, 1, 'like', '2024-11-10 17:58:07'),
-(11, 105, 4, 'like', '2024-11-10 19:43:01');
 
 -- --------------------------------------------------------
 
@@ -141,6 +94,60 @@ INSERT INTO `cover_photo` (`photo_id`, `user_id`, `photo_path`, `uploaded_at`) V
 (3, 1, 'http://localhost/Devoi_socila_media/src/backend/uploads/cover_photos/6723997c671d3_my_cover_photo.jpeg', '2024-10-31 14:51:40'),
 (4, 4, 'http://localhost/Devoi_socila_media/src/backend/uploads/cover_photos/67239a440f352_vi_arcane___league_of_legends_by_zasinlow_deu6xc0-pre.jpg', '2024-10-31 14:55:00'),
 (5, 8, 'http://localhost/Devoi_socila_media/src/backend/uploads/cover_photos/673b787bc8912_annoyed-oreki-houtarou-d4zz62qofltldvxz.jpg', '2024-11-18 17:25:16');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `emotions`
+--
+
+CREATE TABLE `emotions` (
+  `emotion_id` int(11) NOT NULL,
+  `emotion_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `emotions`
+--
+
+INSERT INTO `emotions` (`emotion_id`, `emotion_name`) VALUES
+(5, 'Fatiguée'),
+(4, 'Frustrée'),
+(1, 'Heureuse'),
+(6, 'Reconnaissante'),
+(3, 'Stressée'),
+(2, 'Triste');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `entries`
+--
+
+CREATE TABLE `entries` (
+  `entry_id` int(11) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `emotion_id` int(11) DEFAULT NULL,
+  `well_being_score` tinyint(4) DEFAULT NULL,
+  `notes` text DEFAULT NULL,
+  `positive_moment` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `isAnonyme` tinyint(1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `entries`
+--
+
+INSERT INTO `entries` (`entry_id`, `user_id`, `emotion_id`, `well_being_score`, `notes`, `positive_moment`, `created_at`, `isAnonyme`) VALUES
+(12, 1, 5, 2, 'test', 'Mety ve', '2024-11-13 21:04:56', NULL),
+(13, 1, 3, 4, 'test', 'andramana', '2024-11-13 21:09:56', NULL),
+(14, 1, 6, 2, 'test4', 'test4', '2024-11-13 21:16:53', NULL),
+(15, 2, 1, 3, 'note', 'titre', '2024-11-14 05:50:06', NULL),
+(16, 2, 5, 3, 'menstrual', 'Faly', '2024-11-15 16:16:33', 1),
+(17, 1, 2, 4, 'test pr', 'test ', '2024-11-22 14:06:38', 1),
+(18, 2, NULL, 1, '', '', '2024-11-22 14:13:46', 0),
+(19, 2, NULL, 2, 'test pr mety ve \n', '', '2024-11-22 14:20:27', 0);
 
 -- --------------------------------------------------------
 
@@ -297,131 +304,6 @@ INSERT INTO `notifications` (`id`, `actor_id`, `user_id`, `type`, `is_read`, `cr
 -- --------------------------------------------------------
 
 --
--- Structure de la table `posts`
---
-
-CREATE TABLE `posts` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `content` text NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `comment_count` int(11) DEFAULT 0,
-  `doc_type` enum('photo','video','pdf') DEFAULT NULL,
-  `doc_url` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `posts`
---
-
-INSERT INTO `posts` (`id`, `user_id`, `content`, `created_at`, `comment_count`, `doc_type`, `doc_url`) VALUES
-(91, 1, 'The word of my man!! :)', '2024-11-02 14:10:27', 1, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/95eda73aa9cd11ed27acc28a210c6d73.jpg'),
-(92, 1, 'Bonne lecture!!', '2024-11-02 14:11:54', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/transport.pdf'),
-(93, 1, 'With the right boy!! XD', '2024-11-02 14:13:35', 0, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/Boa.mp4'),
-(95, 1, 'Beautiful me!', '2024-11-02 14:51:16', 1, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/beautiful.jpeg'),
-(96, 1, 'Ito ilay pdf', '2024-11-02 14:53:11', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/Ralaikoto_Mamilalao_Sitraka_Nadia.pdf'),
-(97, 2, '\"Quand tes coéquipières te rappellent qu’il faut manger autre chose que des pixels 🍒🍉📲… Merci les filles, vous êtes les meilleures ! Mais, attendez juste que je finisse ce niveau, c’est super important, ok ? 😼🎮\"', '2024-11-02 15:29:25', 1, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/Anteater.Team.full.2361473.jpg'),
-(98, 2, '\"Quand tu es coincée entre le monde réel et le monde du jeu, mais que tu préfères avoir ta manette à la main plutôt que de parler aux gens… 🎮😅 Pourquoi affronter la réalité quand je peux conquérir des niveaux dans mes jeux préférés ? Parfois, un peu de solitude est exactement ce qu\'il me faut pour me ressourcer. Allez, Nekota, tu peux le faire ! Une aventure à la fois ! 🌟\"', '2024-11-02 15:39:19', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/d9bv30q-be6160b2-37ee-4cb0-83c0-6f1ad0a6f7e1.png'),
-(99, 2, '\"Prêtes pour l’affrontement ! 💥🌤️ Que ce soit sur le champ de bataille ou dans le monde virtuel, rien ne peut nous arrêter quand on est ensemble. 💪🎮 Que les jeux commencent, et que la meilleure équipe gagne ! Aucune timidité ici, juste l’esprit de compétition et beaucoup de rires ! 😄✨\"', '2024-11-02 15:42:25', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/girls_und_panzer-10-nekota-momoga-piyotan-nekonya-world_of_tanks-nekomimi-glasses-eye_patch-peach-freckles.jpg'),
-(100, 2, '\"Quand le défi est de taille, je ne recule jamais ! 💪🌟 Que ce soit sur le champ de bataille ou sur le terrain de sport, je suis toujours prête à me battre et à me dépasser. 🏃‍♀️🎉 Dans Girls und Panzer, j’aime non seulement piloter mon char, mais aussi faire du sport avec mes amies. Chaque entraînement nous renforce et nous unit davantage ! Que l\'on soit en plein combat de chars ou en train de marquer un but, je donne tout ce que j’ai ! 🏆🎮\"', '2024-11-02 15:44:49', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/hq720.jpg'),
-(101, 2, '\"On est prêtes à faire du bruit dans le monde du gaming ! 🎮🔥 Avec ma crew, le style est aussi important que le jeu. On vit pour ces moments de compétition et de fun, et rien ne nous arrête ! Let’s roll, les jeux nous attendent ! 😎✨\"', '2024-11-02 15:49:08', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/GuP-Game-PSV-Ann.jpg'),
-(103, 2, '\"Aujourd\'hui, je partage avec vous ma présentation sur les stratégies de jeu dans World of Tanks! 🚀💥 Chaque bataille est une nouvelle opportunité d\'apprendre et de s\'améliorer, et je suis impatiente de vous montrer comment j\'optimise mes compétences pour tirer le meilleur parti de chaque match. 🔍🎮 Cliquez sur le lien pour télécharger le fichier PDF contenant mes conseils et méthodes : [stratégies_gaming_world_of_tanks.pdf] Ensemble, explorons cet univers passionnant et devenons des pros du gaming ! 💪✨\"_ Je suis impatiente de connaître vos retours et vos propres astuces de jeu !', '2024-11-02 16:00:59', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/strategies_gaming_world_of_tanks.pdf'),
-(107, 2, '\"En plein combat avec mes amis dans Girl und Panzer ! 💣🚗💨 Give it all for the fun and the adrenaline! Let’s go! 🌟💪🎮\"', '2024-11-02 16:44:51', 3, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/Girls und Panzer der Film[Chi-nu reload].mp4'),
-(108, 2, '\"私のプレゼンテーションをぜひご覧ください！🌟 このPDFでは、私が誰であるか、私の情熱、そして私がゲームの大ファンである理由を共有しています。 🎮💖 私の世界を覗いてみて、感想を教えてください！あなたのフィードバックはいつでも大歓迎です！😊✨\r\n\r\nこちらからダウンロード： [Presentation_Nekota_Personnalite_Passions.pdf]\r\n\r\n冒険に飛び込む準備はできましたか？行こう！🚀\"_', '2024-11-02 16:49:58', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/Nekonya.pdf'),
-(111, 3, '“Watch out, Piltover! Jinx is in the house, and she’s ready to rock your world!” 💣🔥', '2024-11-02 17:20:15', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/download.jpeg'),
-(112, 3, '💥💥 It’s Me! 💥💥', '2024-11-02 17:22:11', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/download (2).jpeg'),
-(115, 3, '💣💥 Jinx Was Here! 💥💣', '2024-11-02 17:26:26', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/download (6).jpeg'),
-(116, 3, '💥💥 BOOM, BABY! 💥💥', '2024-11-02 17:26:51', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/download (3).jpeg'),
-(117, 3, '💥💥 Welcome to the Chaos! 💥💥', '2024-11-02 17:30:38', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/c7ba56182385331.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png'),
-(118, 3, '💥💥 Let\'s play! Boom!! 💥💥', '2024-11-02 17:31:28', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/Fortnite-Jinx.jpg'),
-(119, 3, '👑💥 All Hail the Queen of Chaos! 💥👑\r\n\r\nBow down, my chaotic minions! It’s me, Jinx, the one and only Queen of Chaos! 🎉💣\r\n\r\nWith a flick of my wrist and a mischievous grin, I reign over the wildest pandemonium! Every explosion is my royal decree, every laugh a note in my chaotic symphony!\r\n\r\nWhy follow the rules when you can create your own? I say let’s throw a party with fireworks, confetti, and a whole lot of mayhem! 🎆✨\r\n\r\nSo, remember, when chaos calls, I’m there to answer! You better believe it: the Queen of Chaos is always ready to stir things up!\r\n\r\nKeep your eyes peeled, because with me on the throne, life is never dull!\r\n\r\nLong live chaos, and may the explosions be ever in your favor!', '2024-11-02 17:33:03', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/What!?.pdf'),
-(120, 3, '💥💣 I Jinx Everything! 💣💥\r\n\r\nYou thought things were going smoothly? Think again! When Jinx is in the house, chaos isn’t just a possibility—it’s a guarantee! 🎉✨\r\n\r\nEvery plan I touch turns into an adventure of mayhem! Whether it’s a simple heist or just trying to enjoy a nice day out, you better believe I’m bringing the chaos along for the ride!\r\n\r\n“Oops!” I chuckle as things go haywire. It’s like I have this magical touch that turns the ordinary into the explosive! Who needs a boring life when you can have a little pandemonium sprinkled in?\r\n\r\nSo, if you see me around, brace yourselves! I jinx everything, and it’s going to be one wild ride! Hold on tight, because with me in the mix, it’s never just a casual day—it’s an all-out explosion of fun!\r\n\r\nWelcome to my world, where everything is chaos, and I’m the queen of the ride!', '2024-11-02 17:34:35', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/Chaos!!!.pdf'),
-(121, 3, '💥💣 Hey there, chaos lovers! 💣💥\r\n\r\nBOOM! It’s me, Jinx, dropping in to say hi! 🎉✨ If you thought today was going to be boring, you’re in for a wild ride!', '2024-11-02 17:36:26', 0, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/BORING! __ Arcane - Jinx Edit __ Beautiful is Boring - BONES UK.mp4'),
-(123, 3, '💥💣 Let’s turn up the chaos and make some noise! 💣💥', '2024-11-02 17:39:12', 0, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/Jinx is so 😩 #jinx #arcane #edit #viral #trending.mp4'),
-(124, 3, '💥🎶 “Get Jinx” 🎶💥', '2024-11-02 17:41:14', 0, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/JINX LISTENING TO GET JINXED LULW  _ ARCANE #shorts #arcane #leagueoflegends.mp4'),
-(125, 3, '“Hey, Vi! Ready to dance in the chaos and show the world how wild we can be?”', '2024-11-02 17:42:14', 0, NULL, NULL),
-(126, 3, '💣🎉 “Step right up to Jinx’s Chaos Emporium, where every item is a blast! Get your hands on explosive goodies that’ll blow your mind and bring a little mayhem to your life! Shop now and embrace the madness!” 🎉💣', '2024-11-02 17:43:41', 2, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/Jinx_boutique.mp4'),
-(127, 4, 'Jinx, you\'re my sister and nothing will gonna change that.', '2024-11-02 18:08:11', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/letter_to_my_sister.pdf'),
-(128, 4, 'All of you!, hear me now!', '2024-11-02 18:11:12', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/Hear_me_now.pdf'),
-(133, 4, 'She is making marketing now! hahahh', '2024-11-02 18:29:20', 0, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/Jinx_boutique.mp4'),
-(134, 4, 'Hi!Piltover!', '2024-11-02 18:30:19', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/violet-arcane-ezv7a3xm79h1i6io.jpg'),
-(135, 4, 'Love you Pow-Pow! :)', '2024-11-02 18:31:34', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/images (1).jpeg'),
-(136, 4, 'Huhh!! Such a joke!', '2024-11-02 18:32:16', 0, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/violet-arcane.jpg'),
-(137, 1, 'woke_up', '2024-11-02 19:07:38', 1, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/woke_up.mp4'),
-(140, 1, 'Just right', '2024-11-02 19:10:39', 1, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/just_right.mp4'),
-(141, 1, 'Katseye', '2024-11-02 19:11:24', 2, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/katseye.mp4'),
-(145, 1, 'Hey! Guys!!', '2024-11-09 12:44:38', 2, 'photo', 'http://localhost/Devoi_socila_media/public/documents/photos/lila.jpg'),
-(146, 3, 'It\'s coming!!', '2024-11-10 17:56:18', 1, NULL, NULL),
-(148, 2, 'Abus verbal', '2024-11-18 07:44:21', 0, 'video', 'http://localhost/Devoi_socila_media/public/documents/videos/recorded-video.mp4'),
-(149, 2, 'Harcelement', '2024-11-18 07:48:14', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/transport.pdf'),
-(150, 2, 'Harcelement', '2024-11-18 08:53:42', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/transport.pdf'),
-(151, 2, 'Harcelement', '2024-11-18 08:58:36', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/transport.pdf'),
-(152, 2, 'Harcelement', '2024-11-18 10:27:22', 0, 'pdf', 'http://localhost/Devoi_socila_media/public/documents/pdfs/transport.pdf');
-
--- --------------------------------------------------------
-
---
--- Structure de la table `post_reactions`
---
-
-CREATE TABLE `post_reactions` (
-  `id` int(11) NOT NULL,
-  `post_id` int(11) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `reaction_type` enum('like','love','haha','sad','angry') NOT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Déchargement des données de la table `post_reactions`
---
-
-INSERT INTO `post_reactions` (`id`, `post_id`, `user_id`, `reaction_type`, `created_at`) VALUES
-(28, 91, 1, 'love', '2024-11-02 14:10:35'),
-(29, 92, 1, 'like', '2024-11-02 14:12:00'),
-(30, 93, 1, 'love', '2024-11-02 14:13:43'),
-(31, 95, 1, 'love', '2024-11-02 14:51:24'),
-(32, 96, 1, 'like', '2024-11-02 14:53:21'),
-(33, 97, 2, 'love', '2024-11-02 15:29:41'),
-(34, 98, 2, 'love', '2024-11-02 15:39:31'),
-(35, 99, 2, 'like', '2024-11-02 15:42:38'),
-(36, 103, 2, 'like', '2024-11-02 16:01:08'),
-(38, 111, 3, 'like', '2024-11-02 17:20:27'),
-(39, 112, 3, 'like', '2024-11-02 17:22:18'),
-(42, 117, 3, 'love', '2024-11-02 17:30:49'),
-(43, 118, 3, 'love', '2024-11-02 17:31:37'),
-(44, 127, 4, 'love', '2024-11-02 18:08:19'),
-(45, 128, 4, 'love', '2024-11-02 18:11:26'),
-(46, 134, 4, 'like', '2024-11-02 18:30:28'),
-(47, 135, 4, 'love', '2024-11-02 18:31:41'),
-(48, 136, 4, 'haha', '2024-11-02 18:32:24'),
-(49, 137, 1, 'love', '2024-11-02 19:07:54'),
-(50, 140, 1, 'love', '2024-11-02 19:10:58'),
-(51, 141, 2, 'love', '2024-11-07 05:34:15'),
-(52, 140, 2, 'love', '2024-11-07 05:36:57'),
-(53, 137, 2, 'like', '2024-11-07 05:40:49'),
-(54, 96, 2, 'haha', '2024-11-07 05:41:56'),
-(55, 95, 2, 'love', '2024-11-07 05:42:07'),
-(56, 93, 2, 'haha', '2024-11-07 05:42:36'),
-(57, 92, 2, 'like', '2024-11-07 05:42:48'),
-(58, 91, 2, 'love', '2024-11-07 05:42:58'),
-(59, 126, 2, 'like', '2024-11-09 12:59:38'),
-(60, 126, 1, 'love', '2024-11-09 12:53:44'),
-(61, 125, 2, 'haha', '2024-11-09 15:55:34'),
-(62, 145, 2, 'love', '2024-11-09 18:56:00'),
-(63, 145, 4, 'love', '2024-11-09 21:28:05'),
-(64, 125, 1, 'haha', '2024-11-10 12:05:10'),
-(65, 141, 3, 'love', '2024-11-10 17:54:28'),
-(66, 145, 3, 'love', '2024-11-10 17:55:09'),
-(67, 146, 2, 'like', '2024-11-11 09:12:43'),
-(68, 107, 3, 'love', '2024-11-13 18:52:05'),
-(69, 123, 2, 'love', '2024-11-13 18:55:08'),
-(70, 115, 2, 'like', '2024-11-13 18:55:22'),
-(71, 107, 2, 'love', '2024-11-20 08:30:57');
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `private_messages`
 --
 
@@ -475,6 +357,41 @@ INSERT INTO `profile_photo` (`photo_id`, `user_id`, `photo_path`, `uploaded_at`)
 (3, 4, 'http://localhost/Devoi_socila_media/src/backend/uploads/profile_photos/6723cdacdf7df_73671120146532-2.jpeg', '2024-10-31 18:34:20'),
 (4, 2, 'http://localhost/Devoi_socila_media/src/backend/uploads/profile_photos/6726434938717_zU1SBSa2_400x400.jpg', '2024-11-02 15:20:41'),
 (5, 8, 'http://localhost/Devoi_socila_media/src/backend/uploads/profile_photos/673b789285f86_Oreki.jpg', '2024-11-18 17:25:38');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reaction_comments`
+--
+
+CREATE TABLE `reaction_comments` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment_id` int(11) NOT NULL,
+  `reaction_type` enum('like') DEFAULT 'like',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `reaction_entries`
+--
+
+CREATE TABLE `reaction_entries` (
+  `reaction_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `entry_id` int(11) NOT NULL,
+  `reaction_type` enum('like') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `reaction_entries`
+--
+
+INSERT INTO `reaction_entries` (`reaction_id`, `user_id`, `entry_id`, `reaction_type`, `created_at`) VALUES
+(2, 1, 14, 'like', '2024-11-17 15:39:06');
 
 -- --------------------------------------------------------
 
@@ -635,7 +552,8 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `role`
 (9, 'rambola', 'rambola@gmail.com', '123456\r\n', '2024-11-21 20:42:11', NULL),
 (10, 'rambola', 'rambolakely@gmail.com', '123456', '2024-11-21 21:11:32', NULL),
 (11, 'tonton', 'tonton@gmail.com', '123456', '2024-11-21 21:21:51', 'utilisateur'),
-(12, 'papi', 'papi@gmail.com', '123456', '2024-11-21 21:22:41', 'utilisateur');
+(12, 'papi', 'papi@gmail.com', '123456', '2024-11-21 21:22:41', 'utilisateur'),
+(13, 'Mins', 'teste@gmail.com', '123456', '2024-11-22 14:11:39', 'utilisateur');
 
 --
 -- Index pour les tables déchargées
@@ -660,16 +578,8 @@ ALTER TABLE `auth_tokens`
 --
 ALTER TABLE `comments`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_post_comment` (`post_id`),
+  ADD KEY `fk_entry_comment` (`entry_id`),
   ADD KEY `fk_user_comment` (`user_id`);
-
---
--- Index pour la table `comment_reactions`
---
-ALTER TABLE `comment_reactions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `fk_comment_reaction` (`comment_id`);
 
 --
 -- Index pour la table `cover_photo`
@@ -677,6 +587,12 @@ ALTER TABLE `comment_reactions`
 ALTER TABLE `cover_photo`
   ADD PRIMARY KEY (`photo_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Index pour la table `entries`
+--
+ALTER TABLE `entries`
+  ADD PRIMARY KEY (`entry_id`);
 
 --
 -- Index pour la table `followers`
@@ -707,21 +623,6 @@ ALTER TABLE `notifications`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Index pour la table `posts`
---
-ALTER TABLE `posts`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `fk_user_post` (`user_id`);
-
---
--- Index pour la table `post_reactions`
---
-ALTER TABLE `post_reactions`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `fk_post_reaction` (`post_id`);
-
---
 -- Index pour la table `private_messages`
 --
 ALTER TABLE `private_messages`
@@ -735,6 +636,20 @@ ALTER TABLE `private_messages`
 ALTER TABLE `profile_photo`
   ADD PRIMARY KEY (`photo_id`),
   ADD KEY `user_id` (`user_id`);
+
+--
+-- Index pour la table `reaction_comments`
+--
+ALTER TABLE `reaction_comments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_comment_reaction` (`comment_id`),
+  ADD KEY `fk_user_reaction` (`user_id`);
+
+--
+-- Index pour la table `reaction_entries`
+--
+ALTER TABLE `reaction_entries`
+  ADD PRIMARY KEY (`reaction_id`);
 
 --
 -- Index pour la table `security_complaints`
@@ -779,19 +694,19 @@ ALTER TABLE `auth_tokens`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
-
---
--- AUTO_INCREMENT pour la table `comment_reactions`
---
-ALTER TABLE `comment_reactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `cover_photo`
 --
 ALTER TABLE `cover_photo`
   MODIFY `photo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `entries`
+--
+ALTER TABLE `entries`
+  MODIFY `entry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT pour la table `forum_messages`
@@ -812,18 +727,6 @@ ALTER TABLE `notifications`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT pour la table `posts`
---
-ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=153;
-
---
--- AUTO_INCREMENT pour la table `post_reactions`
---
-ALTER TABLE `post_reactions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
-
---
 -- AUTO_INCREMENT pour la table `private_messages`
 --
 ALTER TABLE `private_messages`
@@ -834,6 +737,18 @@ ALTER TABLE `private_messages`
 --
 ALTER TABLE `profile_photo`
   MODIFY `photo_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT pour la table `reaction_comments`
+--
+ALTER TABLE `reaction_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `reaction_entries`
+--
+ALTER TABLE `reaction_entries`
+  MODIFY `reaction_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `security_complaints`
@@ -857,7 +772,7 @@ ALTER TABLE `uploaded_documents`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Contraintes pour les tables déchargées
@@ -879,18 +794,8 @@ ALTER TABLE `auth_tokens`
 -- Contraintes pour la table `comments`
 --
 ALTER TABLE `comments`
-  ADD CONSTRAINT `comments_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
-  ADD CONSTRAINT `comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `fk_post_comment` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_entry_comment` FOREIGN KEY (`entry_id`) REFERENCES `entries` (`entry_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_user_comment` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Contraintes pour la table `comment_reactions`
---
-ALTER TABLE `comment_reactions`
-  ADD CONSTRAINT `comment_reactions_ibfk_1` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`),
-  ADD CONSTRAINT `comment_reactions_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  ADD CONSTRAINT `fk_comment_reaction` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `cover_photo`
@@ -924,21 +829,6 @@ ALTER TABLE `notifications`
   ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Contraintes pour la table `posts`
---
-ALTER TABLE `posts`
-  ADD CONSTRAINT `fk_user_post` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
--- Contraintes pour la table `post_reactions`
---
-ALTER TABLE `post_reactions`
-  ADD CONSTRAINT `fk_post_reaction` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `post_reactions_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
-  ADD CONSTRAINT `post_reactions_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
-
---
 -- Contraintes pour la table `private_messages`
 --
 ALTER TABLE `private_messages`
@@ -950,6 +840,13 @@ ALTER TABLE `private_messages`
 --
 ALTER TABLE `profile_photo`
   ADD CONSTRAINT `profile_photo_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `reaction_comments`
+--
+ALTER TABLE `reaction_comments`
+  ADD CONSTRAINT `fk_comment_reaction` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `fk_user_reaction` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `security_complaints`

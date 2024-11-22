@@ -2,10 +2,12 @@
 class ReactionComments
 {
     private $connexion = null; // Connexion PDO    private $table = "reaction_entries"; // Nom de la table
-    private $table = "comment_reactions";
+    private $table = "reaction_commets";
+    public $id;
     public $user_id;
     public $comment_id;
     public $reaction_type = 'like'; // On suppose qu'il n'y a que des "J'aime" pour cette table
+    public $created_at; // Date de création
 
     // Constructeur qui initialise la connexion à la base de données
     public function __construct($conn)
