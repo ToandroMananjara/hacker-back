@@ -34,18 +34,21 @@ class Router
 
 
         'profile' => ['controller' => 'profileController', 'action' => 'index'],
+        'contact' => ['controller' => 'contactController', 'action' => 'index'],
+
         'createProfilePhoto' => ['controller' => 'profilePhotoController', 'action' => 'createProfilePhoto'],
         'createCoverPhoto' => ['controller' => 'coverPhotoController', 'action' => 'createCoverPhoto'],
 
 
-        'notifications' => ['controller' => 'notification', 'action' => 'index'],
-        'notifications/read' => ['controller' => 'notificationController', 'action' => 'getNotifications'],
+        'notifications' => ['controller' => 'notificationController', 'action' => 'getNotifications'],
+        'notifications/markAsRead' => ['controller' => 'notificationController', 'action' => 'markAsRead'],
         'notifications/count' => ['controller' => 'notificationController', 'action' => 'countUnread'],
 
         'user/follow' => ['controller' => 'followerController', 'action' => 'follow'],
         'user/unfollow' => ['controller' => 'followerController', 'action' => 'unfollow'],
         'user/allfriend' => ['controller' => 'followerController', 'action' => 'allFriend'],
 
+        'signalement' => ['controller' => 'signalementController', 'action' => 'index'],
     ];
     public function __construct($request)
     {

@@ -54,14 +54,20 @@ class ProfileController
                 // $about->id;
                 if ($userCurrent) {
 
+                    $userData = new stdClass();
+                    $userData->id = $userCurrent['id'];
+                    $userData->username = $userCurrent['username'];
+                    $userData->email = $userCurrent['email'];
+                    $userData->profilePhoto = $userProfilePhoto ? $userProfilePhoto['photo_path'] : "";
+                    $userData->coverPhoto = $userCoverPhoto ? $userCoverPhoto['photo_path'] : "";
+                    $userData->role = $userCurrent['role'];
+                    $userData->created_at = $userCurrent['created_at'];
+
                     echo json_encode([
                         'status' => 'success',
-                        'user' => $userCurrent,
+                        'user' => $userData,
                         'about' => $aboutUserCurrent,
                         'posts' => $allPosts ? $allPosts : [],
-                        'profilePhoto' => $userProfilePhoto,
-                        'coverPhoto' => $userCoverPhoto
-
                     ], JSON_UNESCAPED_UNICODE);
                     http_response_code(200);
                 }

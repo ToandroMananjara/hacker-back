@@ -24,7 +24,7 @@ class CommentController
             $userId = 1;
 
 
-            $comment->post_id = $postId;
+            $comment->entry_id = $postId;
             $comment->content = $content;
             $comment->user_id = $userId;
 

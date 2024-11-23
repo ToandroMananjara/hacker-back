@@ -31,6 +31,32 @@ class Followers
         // Retourner true si l'utilisateur suit déjà, false sinon
         return $stmt->rowCount() > 0;
     }
+
+    public function readByFollower()
+    {
+        try {
+            // Prépare la requête
+            $query = "SELECT * FROM " . $this->table . " WHERE follower_id = :follower_id";
+            $stmt = $this->connexion->prepare($query);
+
+            // Liaison du paramètre
+            $stmt->bindParam(':follower_id', $this->follower_id, PDO::PARAM_INT);
+
+            // Exécute la requête
+            $stmt->execute();
+
+            // Récupère les résultats
+            $followers = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            // Retourne les résultats ou un tableau vide si aucun résultat
+            return $followers ?: [];
+        } catch (PDOException $e) {
+            // Gère les erreurs
+            error_log("Error in readByFollower: " . $e->getMessage());
+            return false;
+        }
+    }
+
     public function follow()
     {
         //apetraka controller // // Vérifier et décoder les données JSON reçues

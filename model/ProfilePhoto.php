@@ -39,8 +39,11 @@ class ProfilePhoto
 
         $stmt->bindParam(':user_id', $this->user_id);
         $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($stmt->execute()) {
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+            # code...
+        } else
+            return false;
     }
 
     // Mettre à jour la photo de profil d'un utilisateur

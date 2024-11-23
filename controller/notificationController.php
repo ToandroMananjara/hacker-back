@@ -8,6 +8,7 @@ class NotificationController
     // Récupérer toutes les notifications d'un utilisateur
     public function getNotifications()
     {
+
         if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
             http_response_code(200);
             exit;
@@ -29,38 +30,61 @@ class NotificationController
                 http_response_code(404);
                 echo json_encode(array("message" => "Aucune notification trouvée."));
             }
+            http_response_code(200);
+            exit;
         }
     }
 
     // Compter les notifications non lues
-    public function getUnreadCount($userId)
+    public function getUnreadCount()
     {
-        $db = new Database();
-        $conn = $db->getConnexion();
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+            http_response_code(200);
+            exit;
+        }
 
-        $notifications = new Notifications($conn);
-        $notifications->user_id = $userId;
-        $count = $notifications->CountUnreadNotifications();
+        if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
-        http_response_code(200);
-        echo json_encode(array("unread_count" => $count));
+
+            $userId = $_GET['user_id'];
+            $db = new Database();
+            $conn = $db->getConnexion();
+
+            $notifications = new Notifications($conn);
+            $notifications->user_id = $userId;
+            $count = $notifications->CountUnreadNotifications();
+
+            http_response_code(200);
+            echo json_encode(array("unread_count" => $count));
+        }
     }
 
     // Marquer une notification comme lue
-    public function markAsRead($notificationId)
+    public function markAsRead()
     {
-        $db = new Database();
-        $conn = $db->getConnexion();
-
-        $notifications = new Notifications($conn);
-        $notifications->id = $notificationId;
-
-        if ($notifications->markAsRead()) {
+        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
             http_response_code(200);
-            echo json_encode(array("message" => "Notification marquée comme lue."));
-        } else {
-            http_response_code(500);
-            echo json_encode(array("message" => "Impossible de marquer la notification comme lue."));
+            exit;
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $input = json_decode(file_get_contents('php://input'), true);
+
+            $notificationId = $input['notification_id'];
+            $db = new Database();
+            $conn = $db->getConnexion();
+
+            $notifications = new Notifications($conn);
+            $notifications->id = $notificationId;
+
+            if ($notifications->markAsRead()) {
+                http_response_code(200);
+                echo json_encode(array("message" => "Notification marquée comme lue."));
+            } else {
+                http_response_code(500);
+                echo json_encode(array("message" => "Impossible de marquer la notification comme lue."));
+            }
+            http_response_code(200);
         }
     }
 }

@@ -49,7 +49,7 @@ class SignUp
                 $jwt = JWT::encode($payload, $secret_key, 'HS256');
 
                 $userData = [
-                    'id' => $user->id, // Assurez-vous que cette propriété existe dans $isUser
+                    'user_id' => $user->id, // Assurez-vous que cette propriété existe dans $isUser
                     'email' => $user->email,
                     'username' => $user->username,
                     'role' => $user->role,

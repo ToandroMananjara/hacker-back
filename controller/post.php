@@ -37,6 +37,8 @@ class Post
 
                     $datas[] = [
                         "username" => $userPost['username'],
+                        "user_id" => $user->id,
+                        "profilePhoto" => "",
                         "entry_id" => $post['entry_id'],
                         "well_being_score" => $post["well_being_score"],
                         "notes" => $post["notes"],
