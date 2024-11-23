@@ -22,7 +22,7 @@ class ProfileController
                  * allPosts for the current user
                  * profile picture
                  * cover picture
-                 * contac ??
+                 * contact ??
                  * 
                  */
                 $user = new Users($conn);
@@ -42,13 +42,25 @@ class ProfileController
                 $entries->user_id = $user_id;
                 $allPosts  = $entries->readAllByUser();
 
+                $profilePhoto = new ProfilePhoto($conn);
+                $profilePhoto->user_id = $user_id;
+
+                $coverPhoto = new CoverPhoto($conn);
+                $coverPhoto->user_id = $user_id;
+
+                $userProfilePhoto = $profilePhoto->readByUserId();
+                $userCoverPhoto = $profilePhoto->readByUserId();
+
                 // $about->id;
                 if ($userCurrent) {
+
                     echo json_encode([
                         'status' => 'success',
                         'user' => $userCurrent,
                         'about' => $aboutUserCurrent,
                         'posts' => $allPosts ? $allPosts : [],
+                        'profilePhoto' => $userProfilePhoto,
+                        'coverPhoto' => $userCoverPhoto
 
                     ], JSON_UNESCAPED_UNICODE);
                     http_response_code(200);
