@@ -3,53 +3,62 @@ class Router
 {
     private $request;
     private $routes = [
-        'users' => ['controller' => 'user', 'action' => 'index'],
-        'users/create' => ['controller' => 'user', 'action' => 'createUser'],
-        'users/delete' => ['controller' => 'user', 'action' => 'deleteUser'],
-        'users/update' => ['controller' => 'user', 'action' => 'updateUser'],
+        // Routes pour la gestion des utilisateurs
+        'users' => ['controller' => 'user', 'action' => 'index'], // Afficher tous les utilisateurs
+        'users/create' => ['controller' => 'user', 'action' => 'createUser'], // Créer un nouvel utilisateur
+        'users/delete' => ['controller' => 'user', 'action' => 'deleteUser'], // Supprimer un utilisateur
+        'users/update' => ['controller' => 'user', 'action' => 'updateUser'], // Mettre à jour un utilisateur
 
-        'posts' => ['controller' => 'post', 'action' => 'index'],
-        'posts/create' => ['controller' => 'post', 'action' => 'createPost'],
-        'posts/delete' => ['controller' => 'post', 'action' => 'deletePost'],
-        'posts/update' => ['controller' => 'user', 'action' => 'updatePost'],
+        // Routes pour la gestion des publications
+        'posts' => ['controller' => 'post', 'action' => 'index'], // Afficher toutes les publications
+        'posts/create' => ['controller' => 'post', 'action' => 'createPost'], // Créer une nouvelle publication
+        'posts/delete' => ['controller' => 'post', 'action' => 'deletePost'], // Supprimer une publication
+        'posts/update' => ['controller' => 'post', 'action' => 'updatePost'], // Mettre à jour une publication
 
-        'signIn' => ['controller' => 'signIn', 'action' => 'authenticate'],
-        'signUp' => ['controller' => 'signUp', 'action' => 'index'],
-        'logout' => ['controller' => 'deconnexion', 'action' => 'logout'],
+        // Routes pour l'authentification
+        'signIn' => ['controller' => 'signIn', 'action' => 'authenticate'], // Authentifier un utilisateur
+        'signUp' => ['controller' => 'signUp', 'action' => 'index'], // S'inscrire en tant qu'utilisateur
+        'logout' => ['controller' => 'deconnexion', 'action' => 'logout'], // Déconnecter un utilisateur
 
+        // Routes pour les réactions aux publications
+        'react' => ['controller' => 'reactPost', 'action' => 'reactPost'], // Réagir à une publication
+        'emotion' => ['controller' => 'emotionController', 'action' => 'index'], // Afficher les types d'émotions
 
-        'react' => ['controller' => 'reactPost', 'action' => 'reactPost'],
+        // Routes pour la gestion des commentaires
+        'comment/create' => ['controller' => 'commentController', 'action' => 'addComment'], // Ajouter un commentaire
+        'comment/delete' => ['controller' => 'commentController', 'action' => 'deleteComment'], // Supprimer un commentaire
+        'comment/react' => ['controller' => 'reactCommentController', 'action' => 'reactComment'], // Réagir à un commentaire
 
-        'emotion' => ['controller' => 'emotionController', 'action' => 'index'],
+        // Routes pour la page "À propos"
+        'about' => ['controller' => 'aboutController', 'action' => 'index'], // Afficher la page "À propos"
+        'about/create' => ['controller' => 'aboutController', 'action' => 'createAbout'], // Ajouter une section "À propos"
+        'about/update' => ['controller' => 'aboutController', 'action' => 'updateAbout'], // Mettre à jour une section "À propos"
 
-        'comment/create' => ['controller' => 'commentController', 'action' => 'addComment'],
-        'comment/delete' => ['controller' => 'commentController', 'action' => 'deleteComment'],
-        'comment/react' => ['controller' => 'reactCommentController', 'action' => 'reactComment'],
+        // Routes pour la gestion des profils et des photos
+        'profile' => ['controller' => 'profileController', 'action' => 'index'], // Afficher les informations du profil
+        'createProfilePhoto' => ['controller' => 'profilePhotoController', 'action' => 'createProfilePhoto'], // Ajouter une photo de profil
+        'createCoverPhoto' => ['controller' => 'coverPhotoController', 'action' => 'createCoverPhoto'], // Ajouter une photo de couverture
 
+        // Routes pour les notifications
+        'notifications' => ['controller' => 'notificationController', 'action' => 'getNotifications'], // Récupérer les notifications
+        'notifications/markAsRead' => ['controller' => 'notificationController', 'action' => 'markAsRead'], // Marquer les notifications comme lues
+        'notifications/count' => ['controller' => 'notificationController', 'action' => 'countUnread'], // Compter les notifications non lues
 
-        'about' => ['controller' => 'aboutController', 'action' => 'index'],
+        // Routes pour la gestion des relations utilisateur (amis, abonnements)
+        'user/follow' => ['controller' => 'followerController', 'action' => 'follow'], // Suivre un utilisateur
+        'user/unfollow' => ['controller' => 'followerController', 'action' => 'unfollow'], // Se désabonner d'un utilisateur
+        'user/allfriend' => ['controller' => 'followerController', 'action' => 'allFriend'], // Afficher tous les amis d'un utilisateur
 
-        'about/create' => ['controller' => 'aboutController', 'action' => 'createAbout'],
-        'about/update' => ['controller' => 'aboutController', 'action' => 'updateAbout'],
+        // Routes pour les signalements
+        'signalement' => ['controller' => 'signalementController', 'action' => 'index'], // Afficher tous les signalements
 
+        // Routes pour les évaluations
+        'evaluation' => ['controller' => 'evaluationController', 'action' => 'index'], // Afficher les évaluations
 
-        'profile' => ['controller' => 'profileController', 'action' => 'index'],
-        'contact' => ['controller' => 'contactController', 'action' => 'index'],
-
-        'createProfilePhoto' => ['controller' => 'profilePhotoController', 'action' => 'createProfilePhoto'],
-        'createCoverPhoto' => ['controller' => 'coverPhotoController', 'action' => 'createCoverPhoto'],
-
-
-        'notifications' => ['controller' => 'notificationController', 'action' => 'getNotifications'],
-        'notifications/markAsRead' => ['controller' => 'notificationController', 'action' => 'markAsRead'],
-        'notifications/count' => ['controller' => 'notificationController', 'action' => 'countUnread'],
-
-        'user/follow' => ['controller' => 'followerController', 'action' => 'follow'],
-        'user/unfollow' => ['controller' => 'followerController', 'action' => 'unfollow'],
-        'user/allfriend' => ['controller' => 'followerController', 'action' => 'allFriend'],
-
-        'signalement' => ['controller' => 'signalementController', 'action' => 'index'],
+        // Routes pour les plaintes
+        'complaint' => ['controller' => 'complaintController', 'action' => 'index'], // Gérer les plaintes
     ];
+
     public function __construct($request)
     {
         $this->request = $request;

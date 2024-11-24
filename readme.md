@@ -56,9 +56,8 @@
     }
 
     interface TotalPlaintesResponse {
-
-total: number;
-}
+    total: number;
+    }
 
     interface StatusPlaintesResponse {
     current_status: string;
