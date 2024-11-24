@@ -39,6 +39,8 @@ class Router
         'createProfilePhoto' => ['controller' => 'profilePhotoController', 'action' => 'createProfilePhoto'], // Ajouter une photo de profil
         'createCoverPhoto' => ['controller' => 'coverPhotoController', 'action' => 'createCoverPhoto'], // Ajouter une photo de couverture
 
+
+
         // Routes pour les notifications
         'notifications' => ['controller' => 'notificationController', 'action' => 'getNotifications'], // Récupérer les notifications
         'notifications/markAsRead' => ['controller' => 'notificationController', 'action' => 'markAsRead'], // Marquer les notifications comme lues

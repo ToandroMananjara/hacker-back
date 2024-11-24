@@ -53,7 +53,7 @@ class Entries
         if ($stmt->execute()) {
             // Récupérer l'ID de la dernière entrée insérée
             $this->entry_id = $this->connexion->lastInsertId();
-            return true;
+            return $this->entry_id;
         }
 
         return false;

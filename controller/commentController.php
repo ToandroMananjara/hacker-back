@@ -11,40 +11,72 @@ class CommentController
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $db = new Database();
-            $conn = $db->getConnexion();
+            try {
+                $db = new Database();
+                $conn = $db->getConnexion();
 
-            $comment = new Comments($conn);
+                $comment = new Comments($conn);
 
-            $data = json_decode(file_get_contents("php://input"), true);
-            $postId = $data['entry_id'];
-            $content = trim($data['content']); // Pas besoin de real_escape_string avec PDO
-            $userId = $data['user_id'];
+                $data = json_decode(file_get_contents("php://input"), true);
+                $postId = $data['entry_id'];
+                $content = trim($data['content']); // Pas besoin de real_escape_string avec PDO
+                $userId = $data['user_id'];
 
 
-            $comment->entry_id = $postId;
-            $comment->content = $content;
-            $comment->user_id = $userId;
+                $comment->entry_id = $postId;
+                $comment->content = $content;
+                $comment->user_id = $userId;
 
-            $postOwnerId = $comment->getPostOwner();
+                $postOwnerId = $comment->getPostOwner();
 
-            if ($postOwnerId === false) {
-                throw new Exception("Le post n'existe pas");
-            }
+                if ($postOwnerId === false) {
+                    throw new Exception("Le post n'existe pas");
+                }
 
-            $commentId = $comment->create();
-            $data = [];
+                $commentId = $comment->create();
+                $data = [];
 
-            if ($commentId) {
-                $commentCount = $comment->countCommentsForPost();
-                // $this->notification->create($userId, $postOwnerId, 'comment');
-                $allComments = $comment->read();
+                if ($commentId) {
+                    $commentCount = $comment->countCommentsForPost();
+                    // $this->notification->create($userId, $postOwnerId, 'comment');
+                    $comment->id = $commentId;
+                    $allComments = $comment->read();
 
-                echo json_encode([
-                    'status' => 'success',
-                    'data' => $allComments,
-                    'commentCount' => $commentCount
-                ], JSON_UNESCAPED_UNICODE);
+                    $data = [];
+                    foreach ($allComments as $key => $allComment) {
+                        $comment = new stdClass();
+
+                        $user = new Users($conn);
+                        $user->id = $allComment['user_id'];
+                        $userComment = $user->readOne();
+
+                        $comment->id = $allComment['id'];
+                        $comment->user_id = $allComment['user_id'];
+                        $comment->username = $userComment['username'];
+                        $comment->comment = $allComment['content'];
+                        $comment->created_at = $allComment['created_at'];
+
+
+                        $data[] = $comment;
+                    }
+
+
+                    $userComment = $user->readOne();
+
+                    echo json_encode([
+                        'status' => 'success',
+                        'data' => $data,
+                        'commentCount' => $commentCount
+                    ], JSON_UNESCAPED_UNICODE);
+                } else {
+                    echo json_encode([
+                        'status' => 'success',
+                        'data' => $comment,
+                        'commentCount' => "x"
+                    ], JSON_UNESCAPED_UNICODE);
+                }
+            } catch (PDOException $e) {
+                echo $e;
             }
         }
     }

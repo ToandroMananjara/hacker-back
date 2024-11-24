@@ -101,10 +101,11 @@ class PostController
                 $isCreate = $entries->create();
 
                 if ($isCreate) {
-                    $allPosts = $entries->read();
+                    $entries->entry_id = $isCreate;
+                    $posts = $entries->readAllByUser();
                     echo json_encode([
                         'status' => 'success',
-                        'data' => $allPosts,
+                        'data' => $posts
                     ], JSON_UNESCAPED_UNICODE);
                     http_response_code(200);
                 }

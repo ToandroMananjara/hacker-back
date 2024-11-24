@@ -28,7 +28,8 @@ class Comments
         $stmt->bindParam(':content', $this->content);
 
         if ($stmt->execute()) {
-            return true;
+            $this->id = $this->connexion->lastInsertId();
+            return $this->id;
         }
         return false;
     }
@@ -45,7 +46,7 @@ class Comments
     }
 
     // Lire un seul commentaire par son ID
-    public function readSingle()
+    public function readOne()
     {
         $query = "SELECT * FROM " . $this->table . " WHERE id = :id LIMIT 1";
         $stmt = $this->connexion->prepare($query);
@@ -87,7 +88,7 @@ class Comments
 
     public function getPostOwner()
     {
-        $query = "SELECT user_id FROM posts WHERE id = :postId";
+        $query = "SELECT user_id FROM entries WHERE entry_id = :postId";
         $stmt = $this->connexion->prepare($query);
         $stmt->bindParam(':postId', $this->entry_id, PDO::PARAM_INT);
         $stmt->execute();

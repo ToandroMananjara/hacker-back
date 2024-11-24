@@ -37,7 +37,7 @@ class PrivateMessageController
                     $receveir_user->profilePhoto = $myProfilePhoto['photo_path'];
                     $receveir_user->last_message = $messageUser['content'];
 
-                    $data[] = [$receveir_user];
+                    $data[] = $receveir_user;
                 }
 
                 echo json_encode([
