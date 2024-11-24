@@ -25,12 +25,16 @@ class PrivateMessageController
 
                     $user = new Users($conn);
                     $user->id = $messageUser['user_id'];
-
                     $myUser = $user->readOne();
+
+                    $profilePhoto = new ProfilePhoto($conn);
+                    $profilePhoto->user_id = $messageUser['user_id'];
+                    $myProfilePhoto = $profilePhoto->readByUserId();
+
 
                     $receveir_user->user_id = $myUser['id'];
                     $receveir_user->username = $myUser['username'];
-                    $receveir_user->profilePhoto = "";
+                    $receveir_user->profilePhoto = $myProfilePhoto['photo_path'];
                     $receveir_user->last_message = $messageUser['content'];
 
                     $data[] = [$receveir_user];
