@@ -75,7 +75,7 @@ class ProfilePhotoController
                     echo json_encode([
                         'status' => 'success',
                         'user_id' => $user_id,
-                        'profile_photo' => $myPhotoProfile,
+                        'path' => $myPhotoProfile['photo_path'],
 
 
                     ], JSON_UNESCAPED_UNICODE);
