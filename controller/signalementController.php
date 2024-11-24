@@ -50,15 +50,17 @@ class SignalementController
 
                 $input = json_decode(file_get_contents('php://input'), true);
 
-                $user_id = $input['user_id'];
-                $full_name = $input['full_name'];
-                $date = $input['date'];
-                $hour = $input['hour'];
-                $location = $input['location'];
-                $description = $input['description'];
+                $user_id = $_POST['user_id'];
+                $full_name = $_POST['full_name'];
+                $date = $_POST['date'];
+                $hour = $_POST['hour'];
+                $location = $_POST['location'];
+                $description = $_POST['description'];
+
                 $file = $_FILES['file_path'];
                 $fileName = $file['name'];
                 $fileTmpPath = $file['tmp_name'];
+
                 $fileSize = $file['size'];
                 $fileError = $file['error'];
                 $fileType = $file['type'];
@@ -79,8 +81,9 @@ class SignalementController
 
                 $signalements = new Signalements($conn);
 
+                $signalements->user_id = $user_id;
                 $signalements->full_name = $full_name;
-                // $signalements->receiver_id = ;
+                $signalements->receiver_id = 3;
 
                 $signalements->date = $date;
                 $signalements->hour = $hour;

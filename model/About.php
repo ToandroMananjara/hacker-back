@@ -14,7 +14,7 @@ class About
         }
     }
 
-    // Créer une nouvelle entrée
+
     public function create()
     {
         $query = "INSERT INTO " . $this->table . " (user_id, description) VALUES (:user_id, :description)";
