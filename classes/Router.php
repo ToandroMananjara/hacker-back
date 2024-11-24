@@ -57,6 +57,10 @@ class Router
 
         // Routes pour les plaintes
         'complaint' => ['controller' => 'complaintController', 'action' => 'index'], // Gérer les plaintes
+
+        // Routes pour les messages
+        'message' => ['controller' => 'privateMessageController', 'action' => 'index'], // Gérer les plaintes
+
     ];
 
     public function __construct($request)
