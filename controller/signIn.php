@@ -46,7 +46,8 @@ class SignIn
                     "iat" => $issued_at,
                     "exp" => $expiration_time,
                     "email" => $email,
-                    "user_id" => $user->id
+                    "user_id" => $user->id,
+                    "role" => $user->role
                 ];
 
                 $jwt = JWT::encode($payload, $secret_key, 'HS256');
@@ -56,6 +57,7 @@ class SignIn
                     'user_id' => $user->id, // Assurez-vous que cette propriété existe dans $isUser
                     'email' => $user->email,
                     'username' => $user->username,
+                    "role" => $user->role,
                     'token' => $jwt, // Générer un token si nécessaire
                 ];
 
