@@ -21,7 +21,7 @@ class CommentController
             $data = json_decode(file_get_contents("php://input"), true);
             $postId = $data['post_id'];
             $content = trim($data['content']); // Pas besoin de real_escape_string avec PDO
-            $userId = 1;
+            $userId = $data['user_id'];
 
 
             $comment->entry_id = $postId;

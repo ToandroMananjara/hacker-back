@@ -78,7 +78,10 @@ class SignalementController
                 }
 
                 $signalements = new Signalements($conn);
+
                 $signalements->full_name = $full_name;
+                // $signalements->receiver_id = ;
+
                 $signalements->date = $date;
                 $signalements->hour = $hour;
                 $signalements->location = $location;
