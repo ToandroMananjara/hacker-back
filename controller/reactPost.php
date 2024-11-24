@@ -33,13 +33,16 @@ class ReactPost
                     if ($isLike) {
                         echo json_encode([
                             'status' => 'success',
-                            'message' => "L'utilisateur like le post"
+                            'message' => "L'utilisateur like le post",
+                            'statusLike' => $isLike
+
                         ], JSON_UNESCAPED_UNICODE);
                         http_response_code(200);
                     } else {
                         echo json_encode([
                             'status' => 'success',
-                            'message' => "L'utilisateur dislike le post"
+                            'message' => "L'utilisateur dislike le post",
+                            'statusLike' => $isLike
                         ], JSON_UNESCAPED_UNICODE);
                         http_response_code(200);
                     }
