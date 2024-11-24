@@ -4,10 +4,10 @@ class Router
     private $request;
     private $routes = [
         // Routes pour la gestion des utilisateurs
-        'users' => ['controller' => 'user', 'action' => 'index'], // Afficher tous les utilisateurs
-        'users/create' => ['controller' => 'user', 'action' => 'createUser'], // Créer un nouvel utilisateur
-        'users/delete' => ['controller' => 'user', 'action' => 'deleteUser'], // Supprimer un utilisateur
-        'users/update' => ['controller' => 'user', 'action' => 'updateUser'], // Mettre à jour un utilisateur
+        'user' => ['controller' => 'user', 'action' => 'index'], // Afficher tous les utilisateurs
+        'user/create' => ['controller' => 'user', 'action' => 'createUser'], // Créer un nouvel utilisateur
+        'user/delete' => ['controller' => 'user', 'action' => 'deleteUser'], // Supprimer un utilisateur
+        'user/update' => ['controller' => 'user', 'action' => 'updateUser'], // Mettre à jour un utilisateur
 
         // Routes pour la gestion des publications
         'posts' => ['controller' => 'postController', 'action' => 'index'], // Afficher toutes les publications
