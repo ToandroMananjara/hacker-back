@@ -49,7 +49,7 @@ class Users
     }
 
     // Méthode pour lire tous les utilisateurs
-    public function index()
+    public function read()
     {
         // Requête pour récupérer tous les utilisateurs
         $query = "SELECT id, username, email, created_at, role FROM " . $this->table;
