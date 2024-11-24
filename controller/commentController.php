@@ -1,8 +1,6 @@
 <?php
 class CommentController
 {
-
-
     public function __construct() {}
 
     public function addComment()
@@ -19,7 +17,7 @@ class CommentController
             $comment = new Comments($conn);
 
             $data = json_decode(file_get_contents("php://input"), true);
-            $postId = $data['post_id'];
+            $postId = $data['entry_id'];
             $content = trim($data['content']); // Pas besoin de real_escape_string avec PDO
             $userId = $data['user_id'];
 
