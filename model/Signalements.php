@@ -24,7 +24,7 @@ class Signalements
     }
 
     // Add a report
-    public function addReport()
+    public function createReport()
     {
         $query = "INSERT INTO signalements (user_id, receiver_id, full_name, date, hour, location, description, file_path, signature_path)
                   VALUES (:user_id, :receiver_id, :full_name, :date, :hour, :location, :description, :file_path, :signature_path)";

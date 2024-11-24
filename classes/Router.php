@@ -10,10 +10,10 @@ class Router
         'users/update' => ['controller' => 'user', 'action' => 'updateUser'], // Mettre à jour un utilisateur
 
         // Routes pour la gestion des publications
-        'posts' => ['controller' => 'post', 'action' => 'index'], // Afficher toutes les publications
-        'posts/create' => ['controller' => 'post', 'action' => 'createPost'], // Créer une nouvelle publication
-        'posts/delete' => ['controller' => 'post', 'action' => 'deletePost'], // Supprimer une publication
-        'posts/update' => ['controller' => 'post', 'action' => 'updatePost'], // Mettre à jour une publication
+        'posts' => ['controller' => 'postController', 'action' => 'index'], // Afficher toutes les publications
+        'posts/create' => ['controller' => 'postController', 'action' => 'createPost'], // Créer une nouvelle publication
+        'posts/delete' => ['controller' => 'postController', 'action' => 'deletePost'], // Supprimer une publication
+        'posts/update' => ['controller' => 'postController', 'action' => 'updatePost'], // Mettre à jour une publication
 
         // Routes pour l'authentification
         'signIn' => ['controller' => 'signIn', 'action' => 'authenticate'], // Authentifier un utilisateur
@@ -21,7 +21,7 @@ class Router
         'logout' => ['controller' => 'deconnexion', 'action' => 'logout'], // Déconnecter un utilisateur
 
         // Routes pour les réactions aux publications
-        'react' => ['controller' => 'reactPost', 'action' => 'reactPost'], // Réagir à une publication
+        'react' => ['controller' => 'reactPostController', 'action' => 'reactPost'], // Réagir à une publication
         'emotion' => ['controller' => 'emotionController', 'action' => 'index'], // Afficher les types d'émotions
 
         // Routes pour la gestion des commentaires
@@ -51,6 +51,7 @@ class Router
 
         // Routes pour les signalements
         'signalement' => ['controller' => 'signalementController', 'action' => 'index'], // Afficher tous les signalements
+        'signalement/createSignalement' => ['controller' => 'signalementController', 'action' => 'createSignalement'], // Creation de  signalement
 
         // Routes pour les évaluations
         'evaluation' => ['controller' => 'evaluationController', 'action' => 'index'], // Afficher les évaluations

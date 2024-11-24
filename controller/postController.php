@@ -1,5 +1,5 @@
 <?php
-class Post
+class PostController
 {
     public function __construct() {}
     public function index()
@@ -16,6 +16,7 @@ class Post
 
                 $entries = new Entries($conn);
                 $allPosts = $entries->read();
+
 
                 $user = new Users($conn);
 

@@ -35,7 +35,7 @@ class SignalementController
         }
     }
 
-    public function createPhotoProfile()
+    public function createSignalement()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
             http_response_code(200);
@@ -48,64 +48,61 @@ class SignalementController
                 $db = new Database();
                 $conn = $db->getConnexion();
 
-                // Assurez-vous que l'ID de l'utilisateur est transmis, probablement via un token ou une session
-                $userId = $_POST['user_id'];  // Par exemple, récupérer l'ID de l'utilisateur depuis la requête
+                $input = json_decode(file_get_contents('php://input'), true);
 
-                // Vérification si un fichier est bien téléchargé
-                if (isset($_FILES['profilePhoto']) && $_FILES['profilePhoto']['error'] === UPLOAD_ERR_OK) {
-                    // Récupérer les informations du fichier
-                    $file = $_FILES['profilePhoto'];
-                    $fileName = $file['name'];
-                    $fileTmpPath = $file['tmp_name'];
-                    $fileSize = $file['size'];
-                    $fileError = $file['error'];
-                    $fileType = $file['type'];
+                $user_id = $input['user_id'];
+                $full_name = $input['full_name'];
+                $date = $input['date'];
+                $hour = $input['hour'];
+                $location = $input['location'];
+                $description = $input['description'];
+                $file = $_FILES['file_path'];
+                $fileName = $file['name'];
+                $fileTmpPath = $file['tmp_name'];
+                $fileSize = $file['size'];
+                $fileError = $file['error'];
+                $fileType = $file['type'];
 
-                    // Définir les extensions acceptées et la taille maximale du fichier
-                    $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];  // Types d'images autorisées
-                    $maxFileSize = 5 * 1024 * 1024; // 5MB maximum
-
-                    // Vérification de la taille du fichier
-                    if ($fileSize > $maxFileSize) {
-                        throw new Exception("Le fichier est trop volumineux. La taille maximale est de 5 Mo.");
-                    }
-
-                    // Vérification du type du fichier
-                    if (!in_array($fileType, $allowedTypes)) {
-                        throw new Exception("Type de fichier non autorisé. Seules les images JPEG, PNG et GIF sont autorisées.");
-                    }
-
-                    // Créer un dossier pour l'utilisateur si nécessaire
-                    $uploadDir = 'users/' . $userId . '/profilePhoto';
-                    if (!file_exists($uploadDir)) {
-                        mkdir($uploadDir, 0777, true);  // Crée le dossier avec les permissions appropriées
-                    }
-
-                    // Créer un nom unique pour l'image pour éviter les conflits de nom
-                    $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
-                    $newFileName = uniqid() . '.' . $fileExtension;  // Nouveau nom de fichier unique
-                    $destination = $uploadDir . '/' . $newFileName;
-
-                    // Déplacer le fichier téléchargé vers le dossier cible
-                    if (!move_uploaded_file($fileTmpPath, $destination)) {
-                        throw new Exception("Une erreur est survenue lors de l'enregistrement de la photo de profil.");
-                    }
-
-                    // Mettre à jour le chemin de la photo de profil dans la base de données
-                    $profilePhoto = new ProfilePhoto($conn);
-                    $profilePhoto->user_id = $userId;
-                    $profilePhoto->photo_path = $destination;
-
-                    // Enregistrer le chemin dans la base de données (assurez-vous que la méthode insert() est définie dans la classe ProfilePhoto)
-                    if (!$profilePhoto->create()) {
-                        throw new Exception("Une erreur est survenue lors de l'enregistrement du chemin dans la base de données.");
-                    }
-
-                    // Répondre avec un message de succès
-                    echo json_encode(['status' => 'success', 'message' => 'Photo de profil téléchargée avec succès.', 'photo_path' => $destination], JSON_UNESCAPED_UNICODE);
-                } else {
-                    throw new Exception("Aucun fichier téléchargé ou erreur dans le téléchargement.");
+                $uploadDir = 'users/' . $user_id . '/Signalements';
+                if (!file_exists($uploadDir)) {
+                    mkdir($uploadDir, 0777, true);  // Crée le dossier avec les permissions appropriées
                 }
+
+                $fileExtension = pathinfo($fileName, PATHINFO_EXTENSION);
+                $newFileName = uniqid() . '.' . $fileExtension;  // Nouveau nom de fichier unique
+                $destination = $uploadDir . '/' . $newFileName;
+
+                // Déplacer le fichier téléchargé vers le dossier cible
+                if (!move_uploaded_file($fileTmpPath, $destination)) {
+                    throw new Exception("Une erreur est survenue lors de l'enregistrement de la photo de profil.");
+                }
+
+                $signalements = new Signalements($conn);
+                $signalements->full_name = $full_name;
+                $signalements->date = $date;
+                $signalements->hour = $hour;
+                $signalements->location = $location;
+                $signalements->description = $description;
+                $signalements->file_path = $destination;
+
+                $isCreate = $signalements->createReport();
+
+                if ($isCreate) {
+                    echo json_encode([
+                        'status' => 'success',
+                        'message' => 'Plainte placé avec succès.',
+                    ], JSON_UNESCAPED_UNICODE);
+                } else {
+                    echo json_encode([
+                        'status' => 'failed',
+                        'message' => 'Erreur lors de la soumission de formulaire',
+                    ], JSON_UNESCAPED_UNICODE);
+                }
+                // Assurez-vous que l'ID de l'utilisateur est transmis, probablement via un token ou une session
+
+
+                // Répondre avec un message de succès
+
             } catch (Exception $e) {
                 // Gérer les erreurs
                 http_response_code(400);

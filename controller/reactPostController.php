@@ -1,5 +1,6 @@
 <?php
-class ReactPost
+class ReactPostController
+
 {
     public function __construct() {}
 
