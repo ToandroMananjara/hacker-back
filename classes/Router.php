@@ -38,6 +38,7 @@ class Router
         'profile' => ['controller' => 'profileController', 'action' => 'index'], // Afficher les informations du profil
         'createProfilePhoto' => ['controller' => 'profilePhotoController', 'action' => 'createProfilePhoto'], // Ajouter une photo de profil
         'createCoverPhoto' => ['controller' => 'coverPhotoController', 'action' => 'createCoverPhoto'], // Ajouter une photo de couverture
+        'profilePhoto' => ['controller' => 'profilePhotoController', 'action' => 'getPhotoByUserId'], // Ajouter une photo de profil
 
 
 
