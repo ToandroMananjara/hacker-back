@@ -10,6 +10,7 @@ class PostController
             exit;
         }
         if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+            $user_id = $_GET['user_id'];
             try {
                 $db = new Database();
                 $conn = $db->getConnexion();
@@ -23,18 +24,28 @@ class PostController
                 $emotion = new Emotions($conn);
                 $reactionEntries = new ReactionEntries($conn);
 
-                $comments = new Comments($conn);
 
                 foreach ($allPosts as $key => $post) {
+                    $comments = new Comments($conn);
                     $user->id = $post['user_id'];
                     $userPost = $user->readOne();
 
                     $emotion->emotion_id = $post['emotion_id'];
                     $userEmotion = $emotion->readOne();
 
+                    $comments->entry_id = $post['entry_id'];
+                    $comment = $comments->readAllByEntry_id();
+
+
                     $reactionEntries->entry_id = $post['entry_id'];
                     $likeCount = $reactionEntries->getLikesCount();
                     $reactPost = $reactionEntries->read();
+
+                    $reactionEntries->user_id = $user_id;
+                    $reactionEntries->entry_id = $post['entry_id'];
+                    $reactionEntries->reaction_type = 'like';
+
+                    $isLike = $reactionEntries->isLiked();
 
                     $datas[] = [
                         "username" => $userPost['username'],
@@ -49,9 +60,10 @@ class PostController
                         "emotion" => $userEmotion,
                         "reaction" => [
                             "likeCount" => $likeCount,
+                            "isLiked" => $isLike,
                             "reacts" => $reactPost
                         ],
-                        "comment" => []
+                        "comments" => $comment
                     ];
                 }
 

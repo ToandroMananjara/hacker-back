@@ -53,7 +53,7 @@ class CommentController
                         $comment->id = $allComment['id'];
                         $comment->user_id = $allComment['user_id'];
                         $comment->username = $userComment['username'];
-                        $comment->comment = $allComment['content'];
+                        $comment->content = $allComment['content'];
                         $comment->created_at = $allComment['created_at'];
 
 

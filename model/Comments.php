@@ -57,6 +57,16 @@ class Comments
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+    public function readAllByEntry_id()
+    {
+        $query = "SELECT * FROM " . $this->table . " WHERE entry_id = :entry_id LIMIT 1";
+        $stmt = $this->connexion->prepare($query);
+
+        $stmt->bindParam(':entry_id', $this->entry_id);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     // Mettre à jour un commentaire
     public function update()
     {
