@@ -8,8 +8,8 @@ class MyAutoload
         $root = $_SERVER["DOCUMENT_ROOT"];
         $host = $_SERVER["HTTP_HOST"];
 
-        define('HOST', 'http://' . $host . '/Hack4Her/');
-        define('ROOT', $root . '/Hack4Her/');
+        define('HOST', 'http://' . $host . '/hacker-back/');
+        define('ROOT', $root . '/hacker-back/');
 
         define('CONTROLLER', ROOT . 'controller/');
         define('VIEW', ROOT . 'view/');
