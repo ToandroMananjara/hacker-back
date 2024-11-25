@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost
--- Généré le : ven. 22 nov. 2024 à 20:25
+-- Généré le : lun. 25 nov. 2024 à 13:23
 -- Version du serveur : 10.4.28-MariaDB
 -- Version de PHP : 8.2.4
 
@@ -41,7 +41,8 @@ INSERT INTO `about` (`user_id`, `description`) VALUES
 (2, 'Euh... Bonjour, je m\'appelle Mai Nekota, mais on me connaît surtout sous le nom de Nekonya ! 😸 Je suis en deuxième année à l\'académie pour filles Ôarai et je suis la chef de char et l\'opératrice radio de l\'équipe Fourmilier. Notre char, le Type 3 Chi-Nu, demande beaucoup de coordination, mais c\'est un défi que j\'aime relever. 😅\n\nJe suis plutôt timide et introvertie, et j\'ai toujours cette posture un peu affaissée... 🙈 J\'adore jouer à des jeux en ligne, surtout ceux qui impliquent des tanks, c\'est là que j\'ai rencontré mes amies et coéquipières Piyotan et Momoga 🎮. C\'est tellement plus facile de parler à des gens en ligne sans avoir à les regarder dans les yeux... 😳\n\nQuand je ne suis pas sur le champ de bataille ou devant mon ordinateur, j\'aime analyser des stratégies de bataille et m\'entraîner à charger des obus (oui, je suis plus forte qu\'on pourrait le croire ! 💪). Mon tank préféré en dehors de nos sessions est le Leopard 2, et j\'espère pouvoir le piloter un jour... ✨\n\nVoilà... je pense que c\'est tout ce qu\'il y a à savoir sur moi... 😸 ajuste ses oreilles de chat et baisse la tête timidement.'),
 (3, 'Hey!!...You get Jinxed!!!, et mes passions, tu vois... c\'est tout ce qui fait BOOM et KABOOM 💣 ! J\'adore les explosions, les fusées, les canons, les grenades, et même les pétards 🧨. Un monde sans bruits fracassants, ça serait... ennuyeux 😒 ! Pourquoi faire dans la subtilité quand on peut tout faire péter et que ça brille comme des étoiles filantes ? 🌠 Côté caractère ? Oh, laisse-moi te dire, je suis complètement décalée 🤪. J’ai ce petit côté fou, tu sais, celui qui peut exploser de rire à n’importe quel moment, mais aussi plonger dans une folie totale sans prévenir. Si tu me dis que quelque chose est impossible... tu m’incites juste à le faire exploser 💥 ! J’ai cette énergie qui déborde, qui bouillonne sous ma peau, un peu comme un cocktail de poudre et d’étincelles. L’entourage ? Ah, c’est là que ça devient intéressant 🤭... Vi, ma chère grande sœur, elle pense toujours pouvoir m\'arrêter. Elle croit que je suis la petite fille qu’elle a laissée derrière, mais elle se trompe... Je suis libérée, imprévisible, et prête à tout pour semer le chaos 😜 ! Et puis, il y a des tas d\'autres joueurs dans ce monde de fous qui sont soit mes alliés, soit mes cibles... Qui sait ? 😏 Mais, au fond, tu sais, tout ça, ça cache une petite fille qui a juste voulu s\'amuser et être vue... avant que tout parte en vrille et que la seule manière de briller soit avec des explosions. 🎆 Alors, tu vois, je suis la folie incarnée, et rien ni personne ne pourra m\'arrêter. C’est un vrai feu d’artifice dans ma tête, et tout ce que je veux, c’est faire BOOM tout autour de moi 😈🔥.'),
 (4, 'Here comes Vi!!\n Pas de surnoms ici, on garde les choses simples et directes. Les poings 🥊 – c’est mon truc, tu vois ? Je ne me laisse pas abattre, même quand tout va mal 😤. J’ai dû me battre pour tout ce que j’ai 💪, et je continue, toujours prête à encaisser, à me relever et à avancer 🚶‍♀️. Je crois en l’action, pas les paroles 💥. Quand je veux quelque chose, je vais chercher, je l\'obtiens 🔥. Et si ça ne passe pas par la porte 🚪, je fais une entrée fracassante par la fenêtre 🪟. Boom 💣, mais cette fois, c’est dans un autre genre.\n\nJ’ai grandi dans les bas-fonds de Zaun 🏙️, un endroit où la loi n’a jamais eu son mot à dire ⚖️. Mais moi, j\'avais cette conviction, ce besoin de justice ⚔️ qui m’a poussée à prendre les choses en main. C’est là que je suis devenue une combattante 🥋. Quand Jinx... bah, quand Jinx est apparue dans ma vie, je l’ai vue comme une petite sœur à protéger 👭, même si je savais qu’on n’était plus vraiment celles que nous étions. Elle a changé 😈, et moi aussi. Je me bats encore pour elle 💥, mais ce n\'est pas facile, tu sais.\n\nCôté caractère ? Je suis têtue 🐂. Quand je crois en quelque chose, je n\'abandonne pas 💯, même si ça veut dire que je dois tout sacrifier 🙅‍♀️. Le plus important pour moi, c’est la loyauté et la protection de ceux que j\'aime ❤️. Surtout ma sœur. Parce que peu importe tout ce qu’elle fait, c’est ma sœur 👭, et je ne vais jamais la laisser tomber 🛡️. Même si je ne suis pas toujours d’accord avec elle 🤦‍♀️, même si elle me fait sortir de mes gonds 😤, je suis là.\n\nMon entourage ? Eh bien, je n’ai pas toujours eu une équipe avec moi, mais j\'ai des alliés 👫... et aussi des ennemis 👊. Beaucoup. On me reconnaît souvent comme la \"flic de Piltover\" 🚔 ou la \"justicière\" 🦸‍♀️, et ça me va. J’ai un boulot à faire 💼, et parfois c’est à moi de rétablir l’ordre ⚖️, même si ce n’est pas facile avec tout ce qui se passe autour de moi 🌪️. Mais, la famille, c\'est ce qui compte le plus pour moi 👨‍👩‍👧‍👦. Jinx, même si elle a sa propre folie 🤪, reste ma priorité.\n\nBref, je suis Vi 💥. Une force brute 💪, une protection 🛡️, une tempête de justice ⚖️. Et peu importe ce qui m\'attend, je vais toujours me battre pour ce que je crois 🥊🔥.\n\nEt maintenant, prépare-toi... ce n’est pas parce que je parle moins fort que je frappe moins fort 💥👊.'),
-(8, 'test update description');
+(8, 'test update description'),
+(13, 'test test\r\n');
 
 -- --------------------------------------------------------
 
@@ -70,6 +71,19 @@ CREATE TABLE `comments` (
   `content` text NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `comments`
+--
+
+INSERT INTO `comments` (`id`, `entry_id`, `user_id`, `content`, `created_at`) VALUES
+(1, 12, 1, 'test description', '2024-11-24 22:14:29'),
+(2, 12, 1, 'test description', '2024-11-24 22:21:30'),
+(3, 12, 1, 'test description', '2024-11-24 22:22:22'),
+(4, 12, 1, 'test description', '2024-11-24 22:27:54'),
+(5, 12, 1, 'test description', '2024-11-24 22:32:32'),
+(6, 12, 1, 'test description', '2024-11-24 22:33:26'),
+(7, 12, 1, 'test description', '2024-11-24 22:33:45');
 
 -- --------------------------------------------------------
 
@@ -147,7 +161,36 @@ INSERT INTO `entries` (`entry_id`, `user_id`, `emotion_id`, `well_being_score`, 
 (16, 2, 5, 3, 'menstrual', 'Faly', '2024-11-15 16:16:33', 1),
 (17, 1, 2, 4, 'test pr', 'test ', '2024-11-22 14:06:38', 1),
 (18, 2, NULL, 1, '', '', '2024-11-22 14:13:46', 0),
-(19, 2, NULL, 2, 'test pr mety ve \n', '', '2024-11-22 14:20:27', 0);
+(19, 2, NULL, 2, 'test pr mety ve \n', '', '2024-11-22 14:20:27', 0),
+(20, 2, NULL, 1, '', '', '2024-11-23 06:49:46', 0),
+(21, 17, NULL, 1, 'reraka', '', '2024-11-23 11:21:49', 0),
+(22, 19, NULL, 5, 'malaelo', '', '2024-11-23 11:21:59', 0),
+(23, 22, NULL, 1, 'zd', '', '2024-11-23 12:36:02', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `evaluations`
+--
+
+CREATE TABLE `evaluations` (
+  `id` int(11) NOT NULL,
+  `signalement_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `clarity` int(11) NOT NULL,
+  `effectiveness` int(11) NOT NULL,
+  `response_time` int(11) NOT NULL,
+  `empathy` int(11) NOT NULL,
+  `comment` text DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `evaluations`
+--
+
+INSERT INTO `evaluations` (`id`, `signalement_id`, `user_id`, `clarity`, `effectiveness`, `response_time`, `empathy`, `comment`, `created_at`) VALUES
+(1, 11, 2, 3, 3, 3, 3, 'Good', '2024-11-23 06:52:30');
 
 -- --------------------------------------------------------
 
@@ -327,12 +370,22 @@ INSERT INTO `private_messages` (`id`, `sender_id`, `receiver_id`, `content`, `se
 (5, 1, 2, 'Still busy, I wanna go to the beach. Hahahh! ', '2024-11-15 13:08:47'),
 (6, 2, 1, 'Busy to playing video games hihiihh!!', '2024-11-15 13:11:19'),
 (7, 2, 1, 'So!?', '2024-11-15 13:22:48'),
-(8, NULL, NULL, NULL, '2024-11-15 13:22:48'),
 (9, 2, 1, 'So', '2024-11-15 13:23:08'),
 (10, 2, 1, 'That\'s okay', '2024-11-15 13:23:29'),
 (11, 2, 1, 'Salut!, nadia', '2024-11-18 18:25:42'),
 (12, 2, 1, 'Coucou', '2024-11-20 05:17:09'),
-(13, 1, 2, 'Salut!, Neko.', '2024-11-20 08:20:32');
+(13, 1, 2, 'Salut!, Neko.', '2024-11-20 08:20:32'),
+(14, 1, 2, 'ddaf', '2024-11-24 16:26:00'),
+(15, 1, 2, 'dadf', '2024-11-24 16:26:18'),
+(16, 1, 2, 'test', '2024-11-24 16:31:51'),
+(17, 1, 2, 'x', '2024-11-24 16:37:56'),
+(18, 2, 1, 'xxxx', '2024-11-24 16:42:56'),
+(19, 2, 1, 'test', '2024-11-24 16:45:40'),
+(20, 2, 1, 'merci', '2024-11-24 16:45:49'),
+(21, 1, 2, ' non kosa e', '2024-11-24 18:15:39'),
+(22, 1, 3, 'dafd', '2024-11-24 18:19:21'),
+(23, 3, 1, 'fds', '2024-11-24 18:22:03'),
+(24, 3, 1, 'ddd', '2024-11-24 18:27:08');
 
 -- --------------------------------------------------------
 
@@ -417,15 +470,8 @@ CREATE TABLE `security_complaints` (
 --
 
 INSERT INTO `security_complaints` (`id`, `signalement_id`, `responsible_service`, `next_step`, `next_date`, `current_status`, `service_comments`, `created_at`, `updated_at`, `priority`) VALUES
-(1, 4, 'Oreki', 'enquete', '2024-11-19', 'Assigné', 'On va fournir des nouvelles prochainement.', '2024-11-19 05:11:29', '2024-11-19 05:56:50', 'haute'),
-(2, 3, 'Oreki', 'interview', '2024-11-20', 'En attente de résolution', 'Toujours en attente de nouvelles.', '2024-11-19 05:15:12', '2024-11-19 05:15:12', 'moyenne'),
-(3, 2, 'Oreki', 'audience', '2024-11-21', 'En appel', 'Votre présence est requise lors de l\'audience.', '2024-11-19 05:17:13', '2024-11-19 05:17:13', 'moyenne'),
-(4, 1, 'Oreki', 'cloture_enquete', '2024-11-22', 'Clôturé', 'Merci je de nous avoir remis votre confiance.', '2024-11-19 05:18:47', '2024-11-19 05:18:47', 'moyenne'),
-(5, 6, 'Oreki', 'enquete', '2024-11-23', 'Reçu', 'Ajouter des preuves', '2024-11-19 12:03:48', '2024-11-19 12:03:48', 'haute'),
-(6, 8, 'Oreki', 'enquete', '2024-12-31', 'Reçu', 'En attente de preuves', '2024-11-20 08:28:23', '2024-11-20 08:28:23', 'haute'),
-(7, 5, 'Oreki', 'appel_a_temoin', '2023-12-24', 'En appel', 'En attente du temoins', '2024-11-20 11:18:39', '2024-11-20 11:18:39', 'moyenne'),
-(8, 7, 'Oreki', 'appel_a_temoin', '2023-04-07', 'Clôturé', 'Aucune signalement de violence.', '2024-11-20 11:20:04', '2024-11-20 11:20:04', 'faible'),
-(9, 11, 'Oreki', 'audience', '2024-12-31', 'En attente de résolution', 'En attente des preuves.', '2024-11-21 08:17:35', '2024-11-21 08:17:35', 'moyenne');
+(1, 4, 'Oreki', 'enquete', '2024-11-19', 'Assigné', 'On va fournir des nouvelles prochainement.', '2024-11-19 02:11:29', '2024-11-19 02:56:50', 'haute'),
+(2, 3, 'Oreki', 'interview', '2024-11-20', 'En attente de résolution', 'Toujours en attente de nouvelles.', '2024-11-19 02:15:12', '2024-11-19 02:15:12', 'moyenne');
 
 -- --------------------------------------------------------
 
@@ -462,7 +508,42 @@ INSERT INTO `signalements` (`id`, `user_id`, `receiver_id`, `full_name`, `date`,
 (8, 2, 8, 'Raketaka', '2024-11-22', '23:23:00', 'anosy', 'Abus', 'http://localhost/Devoi_socila_media/src/backend/api/uploads/files/673d9d4cdbdf6.pdf', NULL, '2024-11-20 08:26:52'),
 (9, 2, 8, 'Anjara', '2024-12-04', '23:45:00', 'Antsirabe', 'Harcelement', 'http://localhost/Devoi_socila_media/src/backend/api/uploads/files/673eebc9ad784.pdf', 'http://localhost/Devoi_socila_media/src/backend/api/uploads/signatures/673eebc9ad594.jpg', '2024-11-21 08:14:01'),
 (10, 2, 8, 'Anjara', '2024-12-04', '23:45:00', 'Antsirabe', 'Harcelement', 'http://localhost/Devoi_socila_media/src/backend/api/uploads/files/673eebcc449fe.pdf', 'http://localhost/Devoi_socila_media/src/backend/api/uploads/signatures/673eebcc449a5.jpg', '2024-11-21 08:14:04'),
-(11, 2, 8, 'Anjara', '2024-12-04', '23:45:00', 'Antsirabe', 'Harcelement', 'http://localhost/Devoi_socila_media/src/backend/api/uploads/files/673eebd5a44d2.pdf', 'http://localhost/Devoi_socila_media/src/backend/api/uploads/signatures/673eebd5a442c.jpg', '2024-11-21 08:14:13');
+(11, 2, 8, 'Anjara', '2024-12-04', '23:45:00', 'Antsirabe', 'Harcelement', 'http://localhost/Devoi_socila_media/src/backend/api/uploads/files/673eebd5a44d2.pdf', 'http://localhost/Devoi_socila_media/src/backend/api/uploads/signatures/673eebd5a442c.jpg', '2024-11-21 08:14:13'),
+(12, 1, 3, 'randria', '2024-11-16', '04:49:00', 'ampasapito', 'afa', 'users/1/Signalements/6743ad8d60894.png', NULL, '2024-11-24 22:49:49'),
+(13, 2, 3, 'randria', '2024-11-16', '01:53:00', 'ampasapito', 'daaaff', 'users/2/Signalements/6743ae8ce518f.png', NULL, '2024-11-24 22:54:04'),
+(14, 17, 3, 'kimbohy marisika', '2024-11-19', '12:16:00', 'Madagascar', 'test', 'users/17/Signalements/67443fe751912.png', NULL, '2024-11-25 09:14:15'),
+(15, 17, 3, 'kimbohy marisika', '2024-11-19', '12:16:00', 'Madagascar', 'test', 'users/17/Signalements/67443ffb907f5.png', NULL, '2024-11-25 09:14:35'),
+(16, 17, 3, 'kimbohy marisika', '2024-11-19', '12:16:00', 'Madagascar', 'test', 'users/17/Signalements/6744402a079f9.png', NULL, '2024-11-25 09:15:22'),
+(17, 17, 3, 'kimbohy marisika', '2024-11-01', '12:15:00', 'Madagascar', 'RE', 'users/17/Signalements/67444050e1849.png', NULL, '2024-11-25 09:16:00'),
+(18, 17, 3, 'kimbohy marisika', '2024-11-13', '12:21:00', 'Madagascar', 'd', 'users/17/Signalements/674440d379498.png', NULL, '2024-11-25 09:18:11'),
+(19, 17, 3, 'kimbohy marisika', '2024-11-06', '16:18:00', 'Madagascar', 'd', 'users/17/Signalements/674441104768a.png', NULL, '2024-11-25 09:19:12'),
+(20, 17, 3, 'kimbohy marisika', '2024-11-07', '12:25:00', 'Madagascar', 'Vonjeo', 'users/17/Signalements/674441c946bec.png', NULL, '2024-11-25 09:22:17');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `status_history`
+--
+
+CREATE TABLE `status_history` (
+  `id` int(11) NOT NULL,
+  `security_complaint_id` int(11) NOT NULL,
+  `previous_status` varchar(255) DEFAULT NULL,
+  `previous_step` varchar(255) DEFAULT NULL,
+  `new_step` varchar(255) DEFAULT NULL,
+  `new_status` varchar(255) DEFAULT NULL,
+  `changed_by` int(11) DEFAULT NULL,
+  `change_date` timestamp NULL DEFAULT current_timestamp(),
+  `comments` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Déchargement des données de la table `status_history`
+--
+
+INSERT INTO `status_history` (`id`, `security_complaint_id`, `previous_status`, `previous_step`, `new_step`, `new_status`, `changed_by`, `change_date`, `comments`) VALUES
+(1, 1, '', 'Enquête en cours', 'Appel à témoins', 'Reçu', 8, '2024-11-21 16:20:06', 'Signalement recu.'),
+(2, 1, 'Reçu', 'Enquête en cours', 'Appel à témoins', 'En vérification', 8, '2024-11-21 16:22:57', 'En cours de verification, donsc vous serrez a temoigner demain.');
 
 -- --------------------------------------------------------
 
@@ -543,7 +624,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `role`) VALUES
-(1, 'Nadia', 'ralaikotonadia@gmail.com', '$2y$10$VlqnL3L6z3RMn0ZrK4nmn.jTTQ7l3gfFa4APUy0KpI37JvvdlqK.m', '2024-09-28 14:52:05', 'utilisateur'),
+(1, 'Nadia', 'ralaikotonadia@gmail.com', '123456\r\n', '2024-09-28 14:52:05', 'utilisateur'),
 (2, 'Nekonya', 'annahbelle@gmail.com', '$2y$10$sOCBr3U0boMQYtoSXNYvc.vOEXsrWmYabZcEV6YYXjdDQIZJdEn6u', '2024-09-28 16:02:23', 'utilisateur'),
 (3, 'Jinx', 'jinxpowder@gmail.com', '$2y$10$bMHNvLCf74vWRe58IbaBwOuaCfcTkdJqNddZs77y4rAjwH5QGi6z.', '2024-09-29 09:56:26', 'utilisateur'),
 (4, 'Violet', 'violetpowder@gmail.com', '$2y$10$o.RxEHsjJOv1QPo9ulustuMYtdrQ3LPDZU5dC3K8PMIBGHpl6UX.2', '2024-09-29 13:42:00', 'utilisateur'),
@@ -553,7 +634,14 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `created_at`, `role`
 (10, 'rambola', 'rambolakely@gmail.com', '123456', '2024-11-21 21:11:32', NULL),
 (11, 'tonton', 'tonton@gmail.com', '123456', '2024-11-21 21:21:51', 'utilisateur'),
 (12, 'papi', 'papi@gmail.com', '123456', '2024-11-21 21:22:41', 'utilisateur'),
-(13, 'Mins', 'teste@gmail.com', '123456', '2024-11-22 14:11:39', 'utilisateur');
+(13, 'Mins', 'teste@gmail.com', '123456', '2024-11-22 14:11:39', 'utilisateur'),
+(15, 'rambolakely', 'testepr@gmail.com', '123456', '2024-11-22 20:06:32', 'utilisateur'),
+(16, 'toandro', 'toandro@gmail.com', '!\"§$%&', '2024-11-22 20:46:31', 'utilisateur'),
+(17, 'kimbohy', 'lovatina123@gmail.com', '123456', '2024-11-23 10:32:00', 'utilisateur'),
+(18, 'rakoto', 'rakoto@gmail.com', '123456', '2024-11-23 10:36:07', 'utilisateur'),
+(19, 'Lova', 'lovabarwijons@gmail.com', '123456', '2024-11-23 10:38:51', 'utilisateur'),
+(20, 'Mianja', 'mianja@gmail.com', '123456', '2024-11-23 12:05:18', 'utilisateur'),
+(22, 'wsed', 'anna@gmail.com', '456789', '2024-11-23 12:34:48', 'utilisateur');
 
 --
 -- Index pour les tables déchargées
@@ -593,6 +681,14 @@ ALTER TABLE `cover_photo`
 --
 ALTER TABLE `entries`
   ADD PRIMARY KEY (`entry_id`);
+
+--
+-- Index pour la table `evaluations`
+--
+ALTER TABLE `evaluations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `signalement_id` (`signalement_id`),
+  ADD KEY `user_id` (`user_id`);
 
 --
 -- Index pour la table `followers`
@@ -667,6 +763,13 @@ ALTER TABLE `signalements`
   ADD KEY `receiver_id` (`receiver_id`);
 
 --
+-- Index pour la table `status_history`
+--
+ALTER TABLE `status_history`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `security_complaint_id` (`security_complaint_id`);
+
+--
 -- Index pour la table `uploaded_documents`
 --
 ALTER TABLE `uploaded_documents`
@@ -694,7 +797,7 @@ ALTER TABLE `auth_tokens`
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `cover_photo`
@@ -706,7 +809,13 @@ ALTER TABLE `cover_photo`
 -- AUTO_INCREMENT pour la table `entries`
 --
 ALTER TABLE `entries`
-  MODIFY `entry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `entry_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT pour la table `evaluations`
+--
+ALTER TABLE `evaluations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `forum_messages`
@@ -730,7 +839,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT pour la table `private_messages`
 --
 ALTER TABLE `private_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT pour la table `profile_photo`
@@ -754,13 +863,19 @@ ALTER TABLE `reaction_entries`
 -- AUTO_INCREMENT pour la table `security_complaints`
 --
 ALTER TABLE `security_complaints`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `signalements`
 --
 ALTER TABLE `signalements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT pour la table `status_history`
+--
+ALTER TABLE `status_history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT pour la table `uploaded_documents`
@@ -772,7 +887,7 @@ ALTER TABLE `uploaded_documents`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Contraintes pour les tables déchargées
@@ -802,6 +917,13 @@ ALTER TABLE `comments`
 --
 ALTER TABLE `cover_photo`
   ADD CONSTRAINT `cover_photo_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `evaluations`
+--
+ALTER TABLE `evaluations`
+  ADD CONSTRAINT `evaluations_ibfk_1` FOREIGN KEY (`signalement_id`) REFERENCES `signalements` (`id`),
+  ADD CONSTRAINT `evaluations_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Contraintes pour la table `followers`
@@ -860,6 +982,12 @@ ALTER TABLE `security_complaints`
 ALTER TABLE `signalements`
   ADD CONSTRAINT `signalements_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   ADD CONSTRAINT `signalements_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`);
+
+--
+-- Contraintes pour la table `status_history`
+--
+ALTER TABLE `status_history`
+  ADD CONSTRAINT `status_history_ibfk_1` FOREIGN KEY (`security_complaint_id`) REFERENCES `security_complaints` (`id`);
 
 --
 -- Contraintes pour la table `uploaded_documents`
